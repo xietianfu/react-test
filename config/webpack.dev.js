@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const rootPath = path.resolve(__dirname, '..');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-const host = process.env.HOST || '0.0.0.0';
+const host = process.env.HOST || 'localhost';
 
 module.exports = merge(common, {
   devtool: 'inline-source-map',

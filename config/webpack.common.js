@@ -7,7 +7,8 @@ const rootPath = path.resolve(__dirname, '..');
 module.exports = {
   entry: {
     // 引入babel-polyfill兼容到ie9
-    app: ['babel-polyfill', './src/index.jsx'],
+    polyfill:['babel-polyfill'],
+    app: ['./src/index.jsx'],
     commons: ['react', 'react-dom']
   },
   plugins: [
@@ -33,8 +34,8 @@ module.exports = {
     }
   },
   output: {
-    filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].js',
+    filename: 'static/js/[name].[hash:8].js',
+    chunkFilename: 'static/js/[name].[hash:8].js',
     path: path.join(rootPath, 'dist')
   },
 

@@ -12,6 +12,7 @@ class App extends Component {
     return (
       <div>
         <h1 className="hello">今天你真好看。</h1>
+        <h1>明天也会是开心的一天</h1>
         <img src={myPhoto} alt="" />
       </div>
     );
