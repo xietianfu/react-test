@@ -7,7 +7,8 @@ const rootPath = path.resolve(__dirname, '..');
 module.exports = {
   entry: {
     // 引入babel-polyfill兼容到ie9
-    app: ['babel-polyfill', './src/index.jsx']
+    app: ['babel-polyfill', './src/index.jsx'],
+    commons: ['react', 'react-dom']
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
@@ -16,6 +17,17 @@ module.exports = {
       template: path.join(rootPath, '/src/index.html')
     })
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2
+        }
+      }
+    }
+  },
   output: {
     filename: 'static/js/[name].[chunkhash:8].js',
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
