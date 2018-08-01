@@ -8,7 +8,8 @@
 - 配置 react 基础环境。 完成
 - 配置热加载和增量更新。 完成
 - 配置 babel 兼容到 IE9。 完成
-- 代码分割。
+- 代码分割。 完成
+- 业务代码动态加载
 - 配置 less。
 - 配置 react-router，redux。
 - 配置 mock。
@@ -76,6 +77,21 @@ module.exports = {
       }
     }
   }
+```
+
+- 如果 webpack 的配置不在根目录，在配置`CleanWebpackPlugin`时需要如下配置，不然会导致在构建时导致`clean-webpack-plugin: D:\01-code\learn\webpack4\dist is outside of the project root. Skipping...`
+
+```javascrip
+  // webpack文档方式配置
+  const rootPath = path.resolve(__dirname, '..');
+  new CleanWebpackPlugin([path.join(rootPath,'dist')]);
+
+  // 需要改写的方式
+  new CleanWebpackPlugin(['dist'], {
+    root: rootPath,
+    verbose: true,
+    dry: false
+  })
 ```
 
 ## 待确定点

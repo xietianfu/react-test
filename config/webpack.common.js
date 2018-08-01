@@ -11,7 +11,11 @@ module.exports = {
     commons: ['react', 'react-dom']
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['dist'], {
+      root: rootPath,
+      verbose: true,
+      dry: false
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(rootPath, '/src/index.html')
@@ -30,7 +34,7 @@ module.exports = {
   },
   output: {
     filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    chunkFilename: 'static/js/[name].[chunkhash:8].js',
     path: path.join(rootPath, 'dist')
   },
 

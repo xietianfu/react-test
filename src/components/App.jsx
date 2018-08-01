@@ -12,7 +12,6 @@ class App extends Component {
     return (
       <div>
         <h1 className="hello">今天你真好看。</h1>
-        <h2>但是我状态不好</h2>
         <img src={myPhoto} alt="" />
       </div>
     );
