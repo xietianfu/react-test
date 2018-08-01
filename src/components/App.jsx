@@ -11,8 +11,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1 className="hello">今天你真好kan</h1>
-        {/* <img src={myPhoto} alt="" /> */}
+        <h1 className="hello">今天你真好看。</h1>
+        <h2>但是我状态不好</h2>
+        <img src={myPhoto} alt="" />
       </div>
     );
   }

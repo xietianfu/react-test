@@ -1,11 +1,13 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const rootPath = path.resolve(__dirname, '..');
 
 module.exports = {
   entry: {
-    app: './src/index.jsx'
+    // 引入babel-polyfill兼容到ie9
+    app: ['babel-polyfill', './src/index.jsx']
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
@@ -15,7 +17,8 @@ module.exports = {
     })
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: 'static/js/[name].[chunkhash:8].js',
+    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     path: path.join(rootPath, 'dist')
   },
 

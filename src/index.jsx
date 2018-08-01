@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-// 转换es的语法
-import 'babel-polyfill';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

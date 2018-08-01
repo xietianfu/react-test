@@ -4,6 +4,9 @@ const common = require('./webpack.common.js');
 const webpack = require('webpack');
 const rootPath = path.resolve(__dirname, '..');
 
+const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+const host = process.env.HOST || '0.0.0.0';
+
 module.exports = merge(common, {
   devtool: 'inline-source-map',
   // 环境设置
@@ -11,11 +14,12 @@ module.exports = merge(common, {
 
   devServer: {
     contentBase: path.join(rootPath, '/dist'),
-    hot: true
+    https: protocol === 'https',
+    host: host
   },
 
   plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    // new webpack.NamedModulesPlugin(),
+    // new webpack.HotModuleReplacementPlugin()
   ]
 });
