@@ -94,6 +94,8 @@ module.exports = {
   })
 ```
 
+- 使用了新的代码分割方式后，不用再引用`HashedModuleIdsPlugin`这个插件来防止未改变的静态文件生成不同的`chunkhash`了。
+
 ## 待确定点
 
 - 是否使用`babel-runtime`保持代码整洁。
