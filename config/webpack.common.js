@@ -1,5 +1,4 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const rootPath = path.resolve(__dirname, '..');
@@ -7,16 +6,12 @@ const rootPath = path.resolve(__dirname, '..');
 module.exports = {
   entry: {
     // 引入babel-polyfill兼容到ie9
-    polyfill:['babel-polyfill'],
+    // polyfill: ['babel-polyfill'],
     app: ['./src/index.jsx'],
-    commons: ['react', 'react-dom']
+    commons: ['react', 'react-dom', 'react-router-dom', 'redux']
+    //antd: ['antd/lib/Button']
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'], {
-      root: rootPath,
-      verbose: true,
-      dry: false
-    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(rootPath, '/src/index.html')
@@ -27,7 +22,7 @@ module.exports = {
       cacheGroups: {
         commons: {
           name: 'commons',
-          chunks: 'initial',
+          chunks: 'all',
           minChunks: 2
         }
       }

@@ -15,7 +15,8 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.join(rootPath, '/dist'),
     https: protocol === 'https',
-    host: host
+    host: host,
+    port: 8888
   },
 
   plugins: [

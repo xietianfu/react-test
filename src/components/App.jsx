@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-import myPhoto from '../1.jpg';
+import { Button } from 'antd';
 import './app.css';
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
       <div>
         <h1 className="hello">今天你真好看。</h1>
         <h1>明天也会是开心的一天</h1>
-        <img src={myPhoto} alt="" />
+        <Button type="primary">hello</Button>
       </div>
     );
   }
