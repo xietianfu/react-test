@@ -54,6 +54,11 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader']
+      },
+      // 动态路由加载
+      {
+        test: /\.bundle\.js$/,
+        use: 'bundle-loader'
       }
     ]
   }

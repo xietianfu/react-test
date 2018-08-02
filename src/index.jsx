@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import RouterMap from './components/RouterMap';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<RouterMap />, document.getElementById('root'));
 
 if (module.hot) {
   module.hot.accept('./index.jsx', function() {
