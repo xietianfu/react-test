@@ -6,10 +6,9 @@ const rootPath = path.resolve(__dirname, '..');
 module.exports = {
   entry: {
     // 引入babel-polyfill兼容到ie9
-    // polyfill: ['babel-polyfill'],
+    polyfill: ['babel-polyfill'],
     app: ['./src/index.jsx'],
     commons: ['react', 'react-dom', 'react-router-dom', 'redux']
-    //antd: ['antd/lib/Button']
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -22,7 +21,7 @@ module.exports = {
       cacheGroups: {
         commons: {
           name: 'commons',
-          chunks: 'all',
+          chunks: 'initial',
           minChunks: 2
         }
       }
@@ -34,7 +33,7 @@ module.exports = {
     path: path.join(rootPath, 'dist')
   },
 
-  //自动处理文件的后缀，解决引入包必须添加后缀的问题。
+  // 自动处理文件的后缀，解决引入包必须添加后缀的问题。
   resolve: {
     extensions: ['.js', '.jsx', '.json']
   },
@@ -43,13 +42,30 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
+        loader: ['babel-loader'],
         include: path.join(rootPath, 'src'),
         exclude: path.join(rootPath, 'node_modules')
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.less$/,
+        exclude: [/node_modules/],
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              modules: true,
+              localIndexName: '[name]__[local]___[hash:base64:5]'
+            }
+          },
+          {
+            loader: require.resolve('less-loader') // compiles Less to CSS
+          }
+        ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,

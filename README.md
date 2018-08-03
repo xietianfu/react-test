@@ -9,15 +9,15 @@
 - 配置热加载和增量更新。 完成
 - 配置 babel 兼容到 IE9。 完成
 - 代码分割。 完成
-- 业务代码动态加载
-- 配置 less。
+- 业务代码动态加载。 完成
+- 配置 less。 完成
 - 配置 react-router，redux。完成
 - 配置 mock。
 - 配置 JSDoc。
-- 配置 ESLint。
+- 配置 ESLint。 完成
 - 配置 antd。 完成
 - 配置 vscode 的 setting。
-- 动态引入`polyfill`。
+- 动态引入`polyfill`。 完成
 
 ## 注意点
 
