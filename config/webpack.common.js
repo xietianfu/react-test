@@ -7,13 +7,18 @@ module.exports = {
   entry: {
     // 引入babel-polyfill兼容到ie9
     polyfill: ['babel-polyfill'],
-    app: ['./src/index.jsx'],
+    app: [path.join(rootPath, 'src/index.jsx')],
     commons: ['react', 'react-dom', 'react-router-dom', 'redux']
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(rootPath, '/src/index.html')
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'updata.html',
+      chunks: [],
+      template: path.join(rootPath, '/src/updata.html')
     })
   ],
   optimization: {
@@ -69,7 +74,26 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader']
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]-[hash:4].[ext]',
+              outputPath: 'static/images/'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              minimize: true
+            }
+          }
+        ]
       },
       // 动态路由加载
       {

@@ -18,7 +18,7 @@ const MyLoadingComponent = ({ isLoading, error }) => {
   }
 };
 const AsyncHome = Loadable({
-  loader: () => import('./App'),
+  loader: () => import('./Home'),
   loading: MyLoadingComponent
 });
 const AsyncFoo = Loadable({
