@@ -13,10 +13,19 @@ module.exports = merge(common, {
   mode: 'development',
 
   devServer: {
+    // 开启gzip压缩
+    compress: true,
     contentBase: path.join(rootPath, '/dist'),
     https: protocol === 'https',
-    host: host,
-    port: 8888
+    host,
+    port: 8888,
+    proxy: {
+      '/api/*': {
+        target: 'http://localhost:36742',
+        secure: false, // 接受 运行在 https 上的服务
+        changeOrigin: true
+      }
+    }
   },
 
   plugins: [

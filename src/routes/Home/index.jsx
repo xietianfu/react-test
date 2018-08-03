@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { Button } from 'antd';
 import styles from './app.less';
+import axios from 'axios';
 
 import myPhoto from '../../assets/images/1.jpg';
 
@@ -12,7 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(111);
+    axios.get('api/name').then(res => console.log(res));
   }
 
   render() {

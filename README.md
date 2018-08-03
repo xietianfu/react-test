@@ -18,6 +18,7 @@
 - 配置 antd。 完成
 - 配置 vscode 的 setting。
 - 动态引入`polyfill`。 完成
+- 配置多入口。 完成
 
 ## 注意点
 
