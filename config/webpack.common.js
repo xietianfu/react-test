@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+
 const rootPath = path.resolve(__dirname, '..');
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'updata.html',
       chunks: [],
-      template: path.join(rootPath, '/src/updata.html')
+      template: path.join(rootPath, '/src/pages/updata.html')
     })
   ],
   optimization: {

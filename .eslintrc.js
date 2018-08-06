@@ -11,6 +11,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'react/sort-comp': 0,
+    'react/jsx-wrap-multilines': 0,
     // common rules
     'import/no-extraneous-dependencies': 0,
     'import/first': 0,

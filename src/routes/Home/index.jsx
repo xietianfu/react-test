@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-import { Button } from 'antd';
-import styles from './app.less';
+import { Button, Menu, Icon } from 'antd';
 import axios from 'axios';
+import { getMenuData } from '../../constants/menu';
 
+import styles from './app.less';
 import myPhoto from '../../assets/images/1.jpg';
+
+const { SubMenu } = Menu;
+const MenuItemGroup = Menu.ItemGroup;
 
 class App extends Component {
   constructor(props) {
@@ -13,16 +17,66 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(getMenuData());
     axios.get('api/name').then(res => console.log(res));
   }
 
+  handleClick = () => {
+    console.log('hello');
+  };
+
+  hello = () => <h1 onClick={() => this.handleClick()}>book</h1>;
+
+  // formatterMenu = menuData => {
+  //   console.log(menuData);
+  //   if (Array.isArray(menuData)) {
+  //     return menuData.map(item => {
+  //       if (item.children) {
+  //         return (
+  //           <SubMenu
+  //             key={item.name}
+  //             title={
+  //               <span>
+  //                 <Icon type={item.icon} />
+  //                 <span>{item.name}</span>
+  //               </span>
+  //             }
+  //           >
+  //             {this.formatterMenu(item.children)}
+  //           </SubMenu>
+  //         );
+  //       }
+  //       return this.formatterMenu(item);
+  //     });
+  //   } else {
+  //     return <Menu.Item key={menuData.name}>{menuData.name}</Menu.Item>;
+  //   }
+  // };
+
+
+
+  formatterMenu = (menuData) => {
+    if (menuData.children) {
+      return (
+        <Div>
+          {this.}
+      )
+      this.formatterMenu(menuData.children);
+    } else {
+      return (
+
+      )
+    }
+  };
+
   render() {
+    console.error('formatter', this.formatterMenu(getMenuData()));
     return (
       <div>
-        <h1 className={styles.hello}>今天你真好看。</h1>
-        <h1>明天也会是开心的一天</h1>
-        <Button type="primary">hello</Button>
-        <img src={myPhoto} alt="一张钞票" />
+        {this.hello()}
+        <Menu mode="inline" style={{ width: 256 }}>
+          {this.formatterMenu(getMenuData())}
+        </Menu>
       </div>
     );
   }
