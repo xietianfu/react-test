@@ -10,6 +10,12 @@ import myPhoto from '../../assets/images/1.jpg';
 const { SubMenu } = Menu;
 const MenuItemGroup = Menu.ItemGroup;
 
+// TODO:通过是否菜单还有子元素进行递归，构建出菜单
+function filterMenuData(menuData, authorityArr = ['0101', '0102', '02']) {
+  if (!menuData.children) {
+  }
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -21,59 +27,48 @@ class App extends Component {
     axios.get('api/name').then(res => console.log(res));
   }
 
-  handleClick = () => {
-    console.log('hello');
-  };
-
-  hello = () => <h1 onClick={() => this.handleClick()}>book</h1>;
-
-  // formatterMenu = menuData => {
-  //   console.log(menuData);
-  //   if (Array.isArray(menuData)) {
-  //     return menuData.map(item => {
-  //       if (item.children) {
-  //         return (
-  //           <SubMenu
-  //             key={item.name}
-  //             title={
-  //               <span>
-  //                 <Icon type={item.icon} />
-  //                 <span>{item.name}</span>
-  //               </span>
-  //             }
-  //           >
-  //             {this.formatterMenu(item.children)}
-  //           </SubMenu>
-  //         );
-  //       }
-  //       return this.formatterMenu(item);
-  //     });
-  //   } else {
-  //     return <Menu.Item key={menuData.name}>{menuData.name}</Menu.Item>;
-  //   }
-  // };
-
-
-
-  formatterMenu = (menuData) => {
-    if (menuData.children) {
-      return (
-        <Div>
-          {this.}
-      )
-      this.formatterMenu(menuData.children);
+  /**
+   * 将菜单数据构建为ant的菜单
+   * @param {Array} menuData 菜单数据
+   */
+  formatterMenu = menuData => {
+    if (Array.isArray(menuData)) {
+      return menuData.map(item => {
+        if (item.children) {
+          // 没有隐藏该层级
+          if (!item.hideInMenu) {
+            return (
+              <SubMenu
+                key={item.name}
+                disabled={item.disabled}
+                title={
+                  <span>
+                    <Icon type={item.icon} />
+                    <span>{item.name}</span>
+                  </span>
+                }
+              >
+                {this.formatterMenu(item.children)}
+              </SubMenu>
+            );
+          }
+        }
+        return this.formatterMenu(item);
+      });
     } else {
-      return (
-
-      )
+      if (!menuData.hideInMenu) {
+        return (
+          <Menu.Item key={menuData.name} disabled={menuData.disabled}>
+            {menuData.name}
+          </Menu.Item>
+        );
+      }
     }
   };
 
   render() {
-    console.error('formatter', this.formatterMenu(getMenuData()));
     return (
       <div>
-        {this.hello()}
         <Menu mode="inline" style={{ width: 256 }}>
           {this.formatterMenu(getMenuData())}
         </Menu>

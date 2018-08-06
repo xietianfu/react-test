@@ -12,6 +12,7 @@ const menuData = [
         path: 'analysis',
         icon: 'dashboard',
         authority: '01',
+        disabled: true,
         children: [
           {
             name: '三级'
@@ -25,8 +26,24 @@ const menuData = [
       },
       {
         name: '工作台',
-        path: 'workplace'
-        // hideInMenu: true,
+        path: 'workplace',
+        hideInMenu: true
+      }
+    ]
+  },
+  {
+    name: '菜单2',
+    path: 'menuTow',
+    authority: '02',
+    children: [
+      {
+        name: '菜单2-1',
+        path: 'one',
+        authority: '01'
+      },
+      {
+        name: '菜单2-2',
+        path: 'two'
       }
     ]
   }
