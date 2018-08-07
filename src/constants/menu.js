@@ -12,10 +12,15 @@ const menuData = [
         path: 'analysis',
         icon: 'dashboard',
         authority: '01',
-        disabled: true,
+        // disabled: true,
         children: [
           {
-            name: '三级'
+            name: '三级',
+            authority: '01'
+          },
+          {
+            name: '四级',
+            authority: '11'
           }
         ]
       },
@@ -61,14 +66,16 @@ function formatter(data, parentPath = '/', parentAuthority) {
     if (!isUrl(path)) {
       path = parentPath + item.path;
     }
+    // 判断是否存在权限
     authority = authority || '00';
-
+    // 权限拼接
+    authority = Boolean(parentAuthority) // eslint-disable-line
+      ? parentAuthority + authority
+      : authority;
     const result = {
       ...item,
       path,
-      authority: Boolean(parentAuthority) // eslint-disable-line
-        ? parentAuthority + authority
-        : authority
+      authority
     };
     if (item.children) {
       result.children = formatter(
@@ -82,4 +89,4 @@ function formatter(data, parentPath = '/', parentAuthority) {
 }
 
 // eslint-disable-next-line
-export const getMenuData = () => formatter(menuData);
+export const getMenuData = () => formatter(menuData, '/home/');
