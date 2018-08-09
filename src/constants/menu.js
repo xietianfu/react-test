@@ -2,7 +2,7 @@ import { isUrl } from '../utils/utils';
 
 const menuData = [
   {
-    name: 'dashboard',
+    name: '展示板',
     icon: 'dashboard',
     path: 'dashboard',
     authority: '01',
@@ -11,18 +11,7 @@ const menuData = [
         name: '分析页',
         path: 'analysis',
         icon: 'dashboard',
-        authority: '01',
-        // disabled: true,
-        children: [
-          {
-            name: '三级',
-            authority: '01'
-          },
-          {
-            name: '四级',
-            authority: '11'
-          }
-        ]
+        authority: '01'
       },
       {
         name: '监控页',
@@ -31,8 +20,8 @@ const menuData = [
       },
       {
         name: '工作台',
-        path: 'workplace',
-        hideInMenu: true
+        path: 'workplace'
+        // hideInMenu: true
       }
     ]
   },

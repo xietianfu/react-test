@@ -1,4 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { increment, decrement } from '../redux/action/index';
+import { HashRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import Persist from 'persist-js';
+
+function testable(isTestable) {
+  return target => {
+    target.isTestable = isTestable;
+  };
+}
+
+// @testable(true)
+// class MyTestCalss {}
 
 class UserLayout extends Component {
   constructor(props) {
@@ -6,9 +19,33 @@ class UserLayout extends Component {
     this.state = {};
   }
 
+  handleLogin = () => {
+    const store = Persist.Store('My Application');
+  };
+
   render() {
-    return <h1>进入登录页面</h1>;
+    const { onIncrement, value } = this.props;
+    return (
+      <div>
+        <botton onClick={() => onIncrement()}>增加</botton>
+        <h1>{value}</h1>
+      </div>
+    );
   }
 }
 
-export default UserLayout;
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    onIncrement: () => {
+      dispatch(increment(1));
+    },
+    onDecrement: () => {
+      dispatch(decrement(ownProps.caption));
+    },
+  };
+}
+
+export default connect(
+  state => state.userLayout,
+  mapDispatchToProps,
+)(UserLayout);
