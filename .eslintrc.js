@@ -14,6 +14,7 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'react/sort-comp': 0,
     'react/jsx-wrap-multilines': 0,
+    'react/no-unused-state': 0,
     // common rules
     'import/no-extraneous-dependencies': 0,
     'import/first': 0,
@@ -28,6 +29,6 @@ module.exports = {
     'linebreak-style': 'off',
     'sort-imports': 0,
     // es6
-    'arrow-body-style': 0
-  }
+    'arrow-body-style': 0,
+  },
 };
