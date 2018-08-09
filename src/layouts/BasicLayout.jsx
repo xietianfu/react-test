@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
 import { Layout, Icon } from 'antd';
 import { Route } from 'react-router-dom';
@@ -402,4 +401,4 @@ class BasicLayout extends Component {
   }
 }
 
-export default hot(module)(BasicLayout);
+export default BasicLayout;

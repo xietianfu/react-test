@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader';
 import React from 'react';
 import { LocaleProvider } from 'antd';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
@@ -18,12 +19,12 @@ const history = createHistory();
 
 const AsyncHome = Loadable({
   loader: () => import('./layouts/BasicLayout'),
-  loading: LoadingComponent
+  loading: LoadingComponent,
 });
 
 const AsyncLogin = Loadable({
   loader: () => import('./layouts/UserLayout'),
-  loading: LoadingComponent
+  loading: LoadingComponent,
 });
 
 // Create an enhanced history that syncs navigation events with the store
@@ -34,7 +35,7 @@ const AsyncLogin = Loadable({
 // empty Route
 // https://github.com/ReactTraining/react-router/issues/1982  解决人：PFight
 // 解决react-router v4改变查询参数并不会刷新或者说重载组件的问题
-export default () => (
+const RouteMap = () => (
   <LocaleProvider locale={zhCN}>
     <Provider store={store}>
       <Router history={history}>
@@ -46,3 +47,6 @@ export default () => (
     </Provider>
   </LocaleProvider>
 );
+
+// 打开热更新
+export default hot(module)(RouteMap);
