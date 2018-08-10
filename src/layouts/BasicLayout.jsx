@@ -99,6 +99,11 @@ class BasicLayout extends Component {
     });
   };
 
+  /**
+   * @param {Array} menuData 菜单数据
+   * @returns {Array} 路由数组
+   * @author xietf
+   */
   buildRoute = menuData => {
     let cashArr = []; // eslint-disable-line
     if (Array.isArray(menuData)) {
@@ -109,8 +114,13 @@ class BasicLayout extends Component {
           cashArr = [...cashArr, ...result];
         }
         if (!item.children) {
-          const path = item.path.split('/').pop();
-          // console.log(path);
+          // 获取地址最后一位
+          let path = item.path.split('/').pop();
+          // 由于url地址不建议驼峰命名，使用的为下划线命名词组，所有字符串驼峰化
+          path = path.replace(
+            /[-_\s]+(.)?/g,
+            (match, c) => (c ? c.toUpperCase() : ''),
+          );
           cashArr = [
             ...cashArr,
             ...result,
