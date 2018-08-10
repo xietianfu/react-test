@@ -1,5 +1,4 @@
 import { Button } from 'antd';
-import Persist from 'persist-js';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { decrement, increment } from '../redux/action/index';
@@ -22,11 +21,6 @@ class UserLayout extends Component {
       </div>
     );
   }
-}
-
-function readOnly(target, name, descriptor) {
-  descriptor.writable = false;
-  return descriptor;
 }
 
 export default UserLayout;

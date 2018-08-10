@@ -9,7 +9,7 @@ export const store = createStore(
   combineReducers({
     userLayout,
     golobal,
-    routing: routerReducer
+    routing: routerReducer,
   }),
-  composeWithDevTools(applyMiddleware())
+  composeWithDevTools(applyMiddleware()),
 );

@@ -2,28 +2,31 @@ import { isUrl } from '../utils/utils';
 
 const menuData = [
   {
-    name: '展示板',
-    icon: 'dashboard',
-    path: 'dashboard',
+    name: '基础包',
+    icon: 'code',
+    path: 'package',
     authority: '01',
     children: [
       {
-        name: '分析页',
-        path: 'analysis',
+        name: 'redux',
+        path: 'redux',
         icon: 'dashboard',
-        authority: '01'
+        authority: '01',
       },
       {
-        name: '监控页',
-        path: 'monitor',
-        authority: '02'
+        name: 'axios',
+        path: 'axios',
+        authority: '02',
       },
       {
-        name: '工作台',
-        path: 'workplace'
-        // hideInMenu: true
-      }
-    ]
+        name: 'immutable',
+        path: 'immutable',
+      },
+      {
+        name: 'react-loadable',
+        path: 'react-loadable',
+      },
+    ],
   },
   {
     name: '菜单2',
@@ -33,14 +36,14 @@ const menuData = [
       {
         name: '菜单2-1',
         path: 'one',
-        authority: '01'
+        authority: '01',
       },
       {
         name: '菜单2-2',
-        path: 'two'
-      }
-    ]
-  }
+        path: 'two',
+      },
+    ],
+  },
 ];
 
 /**
@@ -64,13 +67,13 @@ function formatter(data, parentPath = '/', parentAuthority) {
     const result = {
       ...item,
       path,
-      authority
+      authority,
     };
     if (item.children) {
       result.children = formatter(
         item.children,
         `${parentPath}${item.path}/`,
-        authority
+        authority,
       );
     }
     return result;

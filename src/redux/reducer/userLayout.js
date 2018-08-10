@@ -1,6 +1,5 @@
 export default (state = {}, action) => {
   const { counterCaption } = action;
-  console.log(action);
 
   switch (action.type) {
     case 'increment':

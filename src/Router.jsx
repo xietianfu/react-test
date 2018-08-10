@@ -1,19 +1,14 @@
-import { hot } from 'react-hot-loader';
-import React from 'react';
 import { LocaleProvider } from 'antd';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
 import createHistory from 'history/createBrowserHistory';
-import { Provider } from 'react-redux';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import React from 'react';
+import { hot } from 'react-hot-loader';
 // 按路由拆分代码
 import Loadable from 'react-loadable';
-import zhCN from 'antd/lib/locale-provider/zh_CN';
+import { Provider } from 'react-redux';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import LoadingComponent from './components/Load';
-
-import { store } from './redux/store';
-
-import BasicLayout from './layouts/BasicLayout';
-import UserLayout from './layouts/UserLayout';
+import { store } from './redux/index';
 
 const history = createHistory();
 
