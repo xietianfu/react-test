@@ -8,7 +8,8 @@ import Loadable from 'react-loadable';
 import { Provider } from 'react-redux';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import LoadingComponent from './components/Load';
-import { store } from './redux/index';
+import { store, persistor } from './redux/index';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const history = createHistory();
 
@@ -33,12 +34,14 @@ const AsyncLogin = Loadable({
 const RouteMap = () => (
   <LocaleProvider locale={zhCN}>
     <Provider store={store}>
-      <Router history={history}>
-        <Switch>
-          <Route path="/home" component={AsyncHome} />
-          <Route path="/login" component={AsyncLogin} />
-        </Switch>
-      </Router>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router history={history}>
+          <Switch>
+            <Route path="/home" component={AsyncHome} />
+            <Route path="/login" component={AsyncLogin} />
+          </Switch>
+        </Router>
+      </PersistGate>
     </Provider>
   </LocaleProvider>
 );
