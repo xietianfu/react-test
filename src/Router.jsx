@@ -7,9 +7,9 @@ import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
 import { Provider } from 'react-redux';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import LoadingComponent from './components/Load';
-import { store, persistor } from './redux/index';
 import { PersistGate } from 'redux-persist/integration/react';
+import LoadingComponent from './components/Load';
+import { persistor, store } from './redux/index';
 
 const history = createHistory();
 
