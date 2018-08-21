@@ -5,7 +5,6 @@ const webpack = require('webpack');
 const rootPath = path.resolve(__dirname, '..');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-const host = process.env.HOST || 'localhost';
 
 module.exports = merge(common, {
   devtool: 'inline-source-map',
@@ -17,12 +16,11 @@ module.exports = merge(common, {
     compress: false,
     contentBase: path.join(rootPath, '/dist'),
     https: protocol === 'https',
-    host,
+    host: '0.0.0.0',
     port: 8888,
     open: true,
-    // historyApiFallback: {
-    //   index: path.join(rootPath, '/dist/index.html'),
-    // },
+    overlay: true,
+    useLocalIp: true,
     historyApiFallback: true,
     proxy: {
       '/api/*': {
