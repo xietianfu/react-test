@@ -76,4 +76,4 @@ function formatter(data, parentPath = '/', parentAuthority) {
 }
 
 // eslint-disable-next-line
-export const getMenuData = () => formatter(menuData, '/home/');
+export const getMenuData = () => formatter(menuData);

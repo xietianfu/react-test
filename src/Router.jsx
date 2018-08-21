@@ -6,7 +6,12 @@ import { hot } from 'react-hot-loader';
 // 按路由拆分代码
 import Loadable from 'react-loadable';
 import { Provider } from 'react-redux';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  HashRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import LoadingComponent from './components/Load';
 import { persistor, store } from './redux/index';
@@ -37,7 +42,7 @@ const RouteMap = () => (
       <PersistGate loading={null} persistor={persistor}>
         <Router history={history}>
           <Switch>
-            <Route path="/home" component={AsyncHome} />
+            <Route path="/" component={AsyncHome} />
             <Route path="/login" component={AsyncLogin} />
           </Switch>
         </Router>
