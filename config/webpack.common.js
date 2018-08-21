@@ -14,6 +14,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(rootPath, '/src/index.html'),
+      // chunksSortMode: 'none',
     }),
     new HtmlWebpackPlugin({
       filename: 'updata.html',
