@@ -6,7 +6,7 @@ const rootPath = path.resolve(__dirname, '..');
 module.exports = {
   entry: {
     // 引入babel-polyfill兼容到ie9
-    polyfill: ['babel-polyfill'],
+    // polyfill: ['babel-polyfill'],
     app: [path.join(rootPath, 'src/index.jsx')],
     commons: ['react', 'react-dom', 'react-router-dom', 'redux'],
   },
