@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Chart from './Echarts';
+import EchartsDataSet from './EchartsDataSet';
 
 const axis = ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'];
 const series = [
@@ -13,6 +14,14 @@ const series = [
   },
 ];
 
+const dimension = ['product', '2012', '2013', '2014', '2015'];
+const source = [
+  // ['product', '2012', '2013', '2014', '2015'],
+  ['Matcha Latte', 41.1, 30.4, 65.1, 53.3],
+  ['Milk Tea', 86.5, 92.1, 85.7, 83.1],
+  ['Cheese Cocoa', 24.1, 67.2, 79.5, 86.4],
+];
+
 class Echarts extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +32,12 @@ class Echarts extends Component {
     return (
       <div>
         <Chart chartType="bar" xAxis={axis} series={series} height="400px" />
-        <Chart chartType="line" xAxis={axis} series={series} height="400px" />
+        <EchartsDataSet
+          chartType={{ type: 'line', seriesLayoutBy: 'row' }}
+          dimension={dimension}
+          source={source}
+          height="400px"
+        />
       </div>
     );
   }

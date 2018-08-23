@@ -5,6 +5,27 @@ import './wonderland';
 import './macarons';
 import { buildSeries } from '../../utils/chart';
 
+function buildDatasetSeries(type, source) {
+  // 判断type传入的类型
+  if (typeof type === 'string') {
+    let series = source[0].map(() => ({ type }));
+    series.pop();
+    return series;
+  }
+  if (Array.isArray(type)) {
+    return type;
+  }
+  if (typeof type === 'object') {
+    if (type.seriesLayoutBy === 'row') {
+      const series = source.map(() => type);
+      series.pop();
+      return series;
+    }
+    return source[0].map(() => type);
+  }
+  return null;
+}
+
 class Echart extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +35,14 @@ class Echart extends Component {
   }
 
   componentDidMount() {
-    const { chartType, xAxis, series, height } = this.props;
+    const {
+      chartType,
+      dimension = [],
+      source = [],
+      xAxis = { type: 'category', gridIndex: 0 },
+      yAxis = { gridIndex: 0 },
+      height = '400px',
+    } = this.props;
     // 基于准备好的dom，初始化echarts实例
     this.myChart = echarts.init(
       document.getElementById(this.random),
@@ -25,21 +53,18 @@ class Echart extends Component {
         height,
       },
     );
-
-    if (series.length < 1) {
-      this.myChart.showLoading();
-    } else {
-      // 绘制图表
-      this.myChart.setOption({
-        title: { text: 'ECharts 入门示例' },
-        tooltip: {},
-        xAxis: {
-          data: xAxis,
-        },
-        yAxis: {},
-        series: buildSeries(chartType, series),
-      });
-    }
+    // 绘制图表
+    this.myChart.setOption({
+      title: { text: 'ECharts 入门示例' },
+      dataset: {
+        dimension,
+        source,
+      },
+      tooltip: {},
+      xAxis,
+      yAxis,
+      series: buildDatasetSeries(chartType, source),
+    });
   }
 
   handleAddData = () => {
@@ -55,21 +80,11 @@ class Echart extends Component {
     });
   };
 
-  handleResetLayout = () => {
-    this.myChart.resize();
-  };
-
   render() {
-    window.onresize = () => {
-      console.log(window.innerWidth);
-      console.log(document.getElementById(this.random).offsetWidth);
-      this.myChart.resize();
-    };
     return (
       <div>
         <Button onClick={() => this.handleAddData()}>新增数据</Button>
-        <Button onClick={() => this.handleResetLayout()}>重置布局</Button>
-        <div id={this.random} style={{ maxWidth: '100%', margin: '100px' }} />
+        <div id={this.random} style={{ maxWidth: '100%' }} />
       </div>
     );
   }
