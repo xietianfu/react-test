@@ -37,7 +37,7 @@ const RouteMap = () => (
       <PersistGate loading={null} persistor={persistor}>
         <Router history={history}>
           <Switch>
-            <Route path="/home" component={AsyncHome} />
+            <Route path="/" component={AsyncHome} />
             <Route path="/login" component={AsyncLogin} />
           </Switch>
         </Router>
