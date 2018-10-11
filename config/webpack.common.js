@@ -6,20 +6,21 @@ const rootPath = path.resolve(__dirname, '..');
 module.exports = {
   entry: {
     // 引入babel-polyfill兼容到ie9
-    polyfill: ['babel-polyfill'],
+    // polyfill: ['babel-polyfill'],
     app: [path.join(rootPath, 'src/index.jsx')],
-    commons: ['react', 'react-dom', 'react-router-dom', 'redux']
+    commons: ['react', 'react-dom', 'react-router-dom', 'redux'],
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.join(rootPath, '/src/index.html')
+      template: path.join(rootPath, '/src/index.html'),
+      // chunksSortMode: 'none',
     }),
     new HtmlWebpackPlugin({
       filename: 'updata.html',
       chunks: [],
-      template: path.join(rootPath, '/src/pages/updata.html')
-    })
+      template: path.join(rootPath, '/src/pages/updata.html'),
+    }),
   ],
   optimization: {
     splitChunks: {
@@ -27,20 +28,21 @@ module.exports = {
         commons: {
           name: 'commons',
           chunks: 'initial',
-          minChunks: 2
-        }
-      }
-    }
+          minChunks: 2,
+        },
+      },
+    },
   },
   output: {
     filename: 'static/js/[name].[hash:8].js',
     chunkFilename: 'static/js/[name].[hash:8].js',
-    path: path.join(rootPath, 'dist')
+    path: path.join(rootPath, 'dist'),
+    publicPath: '/',
   },
 
   // 自动处理文件的后缀，解决引入包必须添加后缀的问题。
   resolve: {
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json'],
   },
 
   module: {
@@ -49,11 +51,11 @@ module.exports = {
         test: /\.(js|jsx)$/,
         loader: ['babel-loader'],
         include: path.join(rootPath, 'src'),
-        exclude: path.join(rootPath, 'node_modules')
+        exclude: path.join(rootPath, 'node_modules'),
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.less$/,
@@ -64,13 +66,13 @@ module.exports = {
             loader: require.resolve('css-loader'),
             options: {
               modules: true,
-              localIndexName: '[name]__[local]___[hash:base64:5]'
-            }
+              localIndexName: '[name]__[local]___[hash:base64:5]',
+            },
           },
           {
-            loader: require.resolve('less-loader') // compiles Less to CSS
-          }
-        ]
+            loader: require.resolve('less-loader'), // compiles Less to CSS
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -79,10 +81,10 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name]-[hash:4].[ext]',
-              outputPath: 'static/images/'
-            }
-          }
-        ]
+              outputPath: 'static/images/',
+            },
+          },
+        ],
       },
       {
         test: /\.html$/,
@@ -90,16 +92,16 @@ module.exports = {
           {
             loader: 'html-loader',
             options: {
-              minimize: true
-            }
-          }
-        ]
+              minimize: true,
+            },
+          },
+        ],
       },
       // 动态路由加载
       {
         test: /\.bundle\.js$/,
-        use: 'bundle-loader'
-      }
-    ]
-  }
+        use: 'bundle-loader',
+      },
+    ],
+  },
 };

@@ -29,18 +29,13 @@ const menuData = [
     ],
   },
   {
-    name: '菜单2',
-    path: 'menuTow',
+    name: '自定义组件',
+    path: 'custom',
     authority: '02',
     children: [
       {
-        name: '菜单2-1',
-        path: 'one',
-        authority: '01',
-      },
-      {
-        name: '菜单2-2',
-        path: 'two',
+        name: 'echart',
+        path: 'echart',
       },
     ],
   },
@@ -81,4 +76,4 @@ function formatter(data, parentPath = '/', parentAuthority) {
 }
 
 // eslint-disable-next-line
-export const getMenuData = () => formatter(menuData, '/');
+export const getMenuData = () => formatter(menuData);

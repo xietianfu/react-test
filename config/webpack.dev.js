@@ -5,7 +5,6 @@ const webpack = require('webpack');
 const rootPath = path.resolve(__dirname, '..');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-const host = process.env.HOST || 'localhost';
 
 module.exports = merge(common, {
   devtool: 'inline-source-map',
@@ -14,22 +13,26 @@ module.exports = merge(common, {
 
   devServer: {
     // 开启gzip压缩
-    compress: true,
+    compress: false,
     contentBase: path.join(rootPath, '/dist'),
     https: protocol === 'https',
-    host,
+    host: '0.0.0.0',
     port: 8888,
+    open: true,
+    overlay: true,
+    useLocalIp: true,
+    historyApiFallback: true,
     proxy: {
       '/api/*': {
         target: 'http://localhost:36742',
         secure: false, // 接受 运行在 https 上的服务
-        changeOrigin: true
-      }
-    }
+        changeOrigin: true,
+      },
+    },
   },
 
   plugins: [
     // new webpack.NamedModulesPlugin(),
     // new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
 });
