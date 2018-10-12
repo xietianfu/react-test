@@ -8,7 +8,7 @@ import { buildSeries } from '../../utils/chart';
 function buildDatasetSeries(type, source) {
   // 判断type传入的类型
   if (typeof type === 'string') {
-    let series = source[0].map(() => ({ type }));
+    const series = source[0].map(() => ({ type }));
     series.pop();
     return series;
   }

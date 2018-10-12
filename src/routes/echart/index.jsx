@@ -3,16 +3,6 @@ import Chart from './Echarts';
 import EchartsDataSet from './EchartsDataSet';
 
 const axis = ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'];
-const series = [
-  {
-    name: '日销量',
-    data: [5, 20, 36, 10, 10, 20],
-  },
-  {
-    name: '月销量',
-    data: [15, 200, 66, 40, 10, 20],
-  },
-];
 
 const dimension = ['product', '2012', '2013', '2014', '2015'];
 const source = [
