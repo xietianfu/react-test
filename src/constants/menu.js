@@ -29,6 +29,17 @@ const menuData = [
     ],
   },
   {
+    name: '基础练习',
+    path: 'basic',
+    authority: '01',
+    children: [
+      {
+        name: '修饰器',
+        path: 'decorator',
+      },
+    ],
+  },
+  {
     name: '自定义组件',
     path: 'custom',
     authority: '02',
