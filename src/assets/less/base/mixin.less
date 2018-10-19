@@ -1,0 +1,91 @@
+@main_color: #108ee9;
+@sub_color: #5474fd;
+@btn-primary-bg: #1eabf2;
+
+.vertical-center(@height){
+    height: @height;
+    line-height: @height;
+}
+
+.over-elipsis(@width) {
+    width: @width;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.fz(@px){
+    font-size: @px;
+    [data-dpr="2"] &{
+        font-size: 2 * @px;
+    }
+    [data-dpr="3"] &{
+        font-size: 3 * @px;
+    }
+}
+
+.wh(@px){
+    width: @px;
+    height: @px;
+    [data-dpr="2"] &{
+        width: 2 * @px;
+        height: 2 * @px;
+    }
+    [data-dpr="3"] &{
+        width: 3 * @px;
+        height: 3 * @px;
+    }
+}
+
+.bs(@px, @px2) {
+    background-size: @px @px2;
+    [data-dpr="2"] &{
+        background-size: 2*@px 2*@px2;
+    }
+    [data-dpr="3"] &{
+        background-size: 2*@px 2*@px2;
+    }
+}
+
+
+.px2px(@name, @px){
+    @{name}: round(@px / 2) * 1px;
+    [data-dpr="2"] & {
+        @{name}: @px * 1px;
+    }
+    // for mx3
+    [data-dpr="2.5"] & {
+        @{name}: round(@px * 2.5 / 2) * 1px;
+    }
+    // for 小米note
+    [data-dpr="2.75"] & {
+        @{name}: round(@px * 2.75 / 2) * 1px;
+    }
+    [data-dpr="3"] & {
+        @{name}: round(@px / 2 * 3) * 1px
+    }
+    // for 三星note4
+    [data-dpr="4"] & {
+        @{name}: @px * 2px;
+    }
+}
+
+.placeholder-color (@color) {
+  &::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: @color;
+  }
+  &:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: @color;
+  }
+  &::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: @color;
+  }
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: @color;
+  }
+}

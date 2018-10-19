@@ -1,0 +1,508 @@
+.mircomall-container {
+  display: flex;
+  padding-bottom: 20px;
+  margin-top: 15px;
+  .mall-list-container {
+    flex-grow: 1;
+    
+    .data-list {
+      table.common-table {
+        td {
+          p{
+            margin-bottom: 0;
+          }
+          .upload-action-btn{
+            margin-bottom: 6px;
+            color: @btn-primary-bg;
+            cursor: pointer;
+          }
+          .upOrDown{
+            font-size: 14px;
+            color: #999;
+            cursor: pointer;
+            i{
+              color: @btn-primary-bg;
+              font-style: normal;
+            }
+          }
+          .suitBrand{
+            min-width: 254px;
+            max-width: 600px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          h3{
+            margin-bottom: 0;
+            font-weight: bold;
+          }
+        }
+        td.operator-bar {
+          a {
+            color: @btn-primary-bg;
+          }
+        }
+        td.checkbox-box {
+          text-align: center;
+          padding-left: 10px;
+          padding-right: 10px;
+          span{
+            //ie 10需要加,否则antd的checkbox选中状态
+            //样式不正确
+            border-collapse:separate;
+          }
+        }
+      }
+    }
+  }
+  .mall-preview-container {
+    width: 356px;
+    .ant-tabs-nav-container {
+      font-size: 16px;
+    }
+    .ant-tabs-bar {
+      border-bottom: none;
+    }
+    .ant-tabs-nav-scroll {
+      text-align: center;
+    }
+    .phone-container {
+      background: url(../../images/mobile_phone.png) 0 0 no-repeat;
+      width: 245px;
+      margin: 0 auto;
+      height: 476px;
+      overflow: hidden;
+      position: relative;
+      .inner-phone {
+        position: absolute;
+        left: 15px;
+        top: 60px;
+        width: 215px;
+        max-height: 370px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-size: 12px;
+        &::-webkit-scrollbar{
+          display: none;
+        }
+        .preview-container {
+          background: #fff;
+          .header {
+            display: flex;
+            padding-top: 8px;
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-bottom: 8px;
+            .clearfix();
+            img {
+              width: 46px;
+              height: 46px;
+              overflow: hidden;
+              flex-shrink: 0;
+            }
+            .shop-info {
+              flex-shrink: 1;
+              margin-left: 10px;
+              h3 {
+                color: @main_color;
+              }
+            }
+            p{
+              margin-bottom: 0;
+              color: #333;
+            }
+          }
+
+          .part-list {
+            display: flex;
+            justify-content: space-around;
+            background: #f5f5f5;
+            padding-top: 8px;
+            .title {
+              height: 30px;
+              background: #f0f0f0;
+              line-height: 30px;
+              margin-bottom: 0;
+              white-space: nowrap;
+              font-size: 12px;
+              .location {
+                color: @main_color;
+                padding: 0 4px;
+              }
+            }
+
+            ul {
+              width: 46%;
+              li{
+                background: #fff;
+                margin-bottom: 8px;
+                border-radius: 4px;
+                img{
+                  width: 100%;
+                }
+                p{
+                  font-size: 12px;
+                  color:rgba(2,2,2,1);
+                  margin-bottom: 0;
+                  height: 20px;
+                  line-height: 20px;
+                }
+              }
+              // li {
+              //   display: flex;
+              //   background: #fff;
+              //   padding-bottom: 5px;
+              //   padding-top: 5px;
+              //   align-items: center;
+              //   margin-bottom: 8px;
+              //   & > span {
+              //     color: #333;
+              //     padding: 0 10px;
+              //   }
+              //   .part-info {
+              //     h3 {
+              //       margin-bottom: 3px;
+              //     }
+              //     h3,  span.value{
+              //       color: @main_color;
+              //     }
+              //     span.item {
+              //       margin-right: 5px;
+              //     }
+              //     p {
+              //       margin-bottom: 0;
+              //     }
+              //   }
+              // }
+            }
+
+            .nodata-container {
+              height: 215px;
+              font-size: 14px;
+              color: #999;
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+    .qr-container {
+      margin: 16px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      .logo {
+        width: 42px;
+        height: 42px;
+        margin-bottom: 16px;
+      }
+      h3 {
+        color: @main_color;
+      }
+      p {
+        color: #999;
+        font-size: 14px;
+      }
+      .qr-img {
+        width: 142px;
+        height: 142px;
+      }
+    }
+  }
+}
+.addPartsBox{
+  .search-modal{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    .ant-input-suffix{
+      height: 100%;
+    }
+    button{
+      background: transparent;
+      color: #999;
+      height: 100%;
+      border: transparent;
+    }
+  }
+  .no-data-container{
+    padding: 160px 0;
+  }
+  &.hasNoData{
+    .isSelected{
+      display: none;
+    }
+    .ant-modal-footer{
+      display: none;
+    }
+  }
+  .ant-btn-clicked:after {
+    display: none;
+  }
+  .ant-input-search{
+    width:237px;
+    background:rgba(244,244,244,1);
+    border-radius: 2px;
+    .ant-input{
+      height:30px; 
+    }
+  }
+  td{
+    height: 40px;
+  }
+  .ant-pagination{
+    margin-top: 12px;
+    text-align: center;
+  }
+  .ant-modal-footer{
+    text-align: center;
+    border: 0;
+    button{
+      margin: 0 10px;
+    }
+  }
+  .isSelected{
+    text-align: center;
+    margin-top: 20px;
+    span{
+      color: #f00;
+    }
+  }
+  .ant-modal-body{
+    padding-bottom: 0;
+  }
+  .ant-modal-content{
+    height: 719px;
+  }
+  .ant-modal-footer{
+    padding-bottom: 17px;
+  }
+}
+
+.addOrRemove{
+  .ant-modal-footer{
+    text-align: center;
+  }
+}
+
+.uploadImgModal{
+  .ant-modal-footer{
+    text-align: center;
+    border: 0;
+    button:first-child{
+      display: none;
+    }
+  }
+  .uploadRepeat{
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .uploadImgBox{
+    margin-bottom: 20px;
+    img{
+      width: 100%;
+    }
+  }
+  .ant-modal-body{
+    padding-bottom: 0;
+  }
+}
+
+.mircomall-imgbox{
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  .thumbnail-box{
+    margin-right: 20px;
+    width: 97px;
+    height: 97px; 
+  }
+  p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 140px;
+  }
+}
+
+.vertical-center-modal {
+  text-align: center;
+  &::before{
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    width: 0;
+  }
+  .ant-modal{
+    display: inline-block;
+    vertical-align: middle;
+    top: 0;
+    text-align: left;
+  }
+}
+
+.wechartModal{
+  .ant-modal-content{
+    box-shadow: none;
+    background: transparent;
+  }
+  .ant-modal-body{
+    padding: 61px 14px 45px;
+    height: 476px;
+    background: url("../../images/mobile_phone.png") no-repeat center center #fff;
+    border-radius: 31px;
+  }
+  .ant-modal-footer{
+    display: none;
+  }
+  .ant-modal-close{
+    right: -32px;
+    top: -32px;
+    .ant-modal-close-x{
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      &::before{
+        border-radius: 50%;
+        border: 1px solid #fff;
+        color: #fff;
+      }
+    }
+  }
+  .phone-container{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    .wechart-banner{
+      position: relative;
+      background: url("../../images/brand_banner.png") center top;
+      text-align: center;
+      img{
+        height: 26px;
+        margin-bottom: 4px;
+      }
+      h3, p{
+        color: #fff;
+        margin-bottom: 0;
+      }
+      h3{
+        margin-bottom: 7px;
+        font-size: 14px;
+      }
+      p{
+        font-size: 12px;
+        text-align: left;
+        padding: 0 10px;
+        max-height: 36px;
+        overflow: hidden;
+      }
+    }
+    .wechart-banner-main{
+      position: relative;
+      z-index: 10;
+      padding: 10px 0;
+    }
+    .wechart-content{
+      img{
+        width: 100%;
+      }
+    }
+  }
+}
+
+#publicFile{
+  position: absolute;
+  left: -9999px;
+}
+
+.select-public-container {
+  display: flex;
+  padding-right: 15px;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 14px;
+  padding-bottom: 15px;
+  &.select-time-container{
+    .ant-tag{
+      margin-right: 0;
+      position: relative;
+      padding: 0 10px;
+      background: transparent;
+      height: auto;
+      line-height: normal;
+      width: auto;
+    }
+    .ant-tag:not(:last-child){
+      &::after{
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        height: 12px;
+        width: 1px;
+        margin-top: -6px;
+        background: rgba(114,114,114,1);
+      }
+    }
+    .ant-tag-checkable-checked{
+      color: #1EABF2;
+    }
+  }
+  .select-public-box {
+    .ant-select {
+      margin-right: 14px;
+    }
+  }
+  .ant-tag{
+    background: rgba(246,246,246,1);
+    font-size: 14px;
+    height: 28px;
+    line-height: 26px;
+    width: 74px;
+    text-align: center;
+  }
+  .ant-tag-checkable-checked{
+    background-color: #4076ea;
+  }
+  .ant-select-selection{
+    border: 0;
+    background: #f1f1f1;
+  }
+}
+
+@media screen and (max-width: 1346px) {
+  .suitBrand{
+    width: 254px;
+  }
+}
+@media screen and (min-width: 1346px) and (max-width: 1440px) {
+  .suitBrand{
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 1440px) and (max-width: 1600px) {
+  .suitBrand{
+    width: 360px;
+  }
+}
+
+@media screen and (min-width: 1600px) and (max-width: 1820px) {
+  .suitBrand{
+    width: 500px;
+  }
+}
+
+@media screen and (min-width: 1820px) {
+  .suitBrand{
+    width: 600px;
+  }
+}

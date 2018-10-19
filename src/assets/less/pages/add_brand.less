@@ -1,0 +1,192 @@
+
+.form-inline-container{
+  padding: 38px 60px 0;
+  &.introduce-container{
+    .form-inline-form{
+      margin-bottom: 20px;
+    }
+  }
+  .form-inline-form{
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    &.form-inline-form-top{
+      align-items: flex-start;
+    }
+    img.user-img{
+      cursor: pointer;
+    }
+    .form-inline-lable{
+      width: 100px;
+      margin-right: 32px;
+      text-align: right;
+      font-size: 16px;
+      span{
+        color: #f00;
+        margin-right: 2px;
+      }
+    }
+    .form-inline-value{
+      width: 446px;
+      font-size: 16px;
+      input, textarea{
+        width: 100%;
+        border: 1px solid #E1E1E1;
+        border-radius: 2px;
+        padding-left: 12px;
+        outline: none;
+        resize: none;
+      }
+      input{
+        height: 38px;
+        outline: none;
+        &:focus{
+          box-shadow: none;
+        }
+        &::-webkit-input-placeholder{
+          color: #999;
+          font-size: 16px;
+        }
+        &::-moz-placeholder{   /* Mozilla Firefox 19+ */
+          color:#999;
+          font-size: 16px;
+        }
+        &:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+          color:#999;
+          font-size: 16px;
+        }
+        &:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+          color:#999;
+          font-size: 16px;
+        }
+        &:disabled{
+          cursor: not-allowed;
+          background: #f5f5f5;
+          color:#999;
+        }
+      }
+      .ant-select-selection__placeholder{
+        font-size: 16px;
+        color: #999;
+      }
+      .ant-select-selection-selected-value{
+        font-size: 16px;
+      }
+      .ant-select-selection{
+        height: 38px;
+      }
+      .ant-select-selection__rendered{
+        line-height: 36px;
+      }
+      textarea{
+        height: 99px;
+      }
+      .ant-select{
+        width: 100%;
+      }
+    }
+    .form-inline-value-list{
+      display: flex;
+      flex-wrap: wrap; 
+      width: 800px;
+    }
+    .form-inline-tip{
+      display: block;
+      margin-bottom: 10px;
+      color: #999999;
+    }
+    .form-inline-value-btn{
+      text-align: right;
+      button:last-child{
+        margin-left: 20px;
+      }
+    }
+    .form-inline-btn{
+      margin-left: 20px;
+    }
+    .img-introduce-box{
+      position: relative;
+      margin: 0 17px 17px 0;
+    }
+    .img-introduce-img{
+      position: relative;
+      .img-introduce-mask{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 26px;
+        line-height: 26px;
+        text-align: center;
+        color: #fff;
+        background: rgba(0,0,0,0.5)
+      }
+    }
+    &.form-inline-sendmsg {
+      .form-inline-value {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 12px;
+        align-items: center;
+        border: 1px solid #E1E1E1;
+        border-radius: 2px;
+        input {
+          width: 200px;
+          border: 0;
+        }
+      }
+    }
+  }
+  .ant-upload.ant-upload-select-picture-card > .ant-upload{
+    padding: 0;
+  }
+  .brand-uploader{
+    display: block;
+    width: 86px;
+    height: 86px;
+    .ant-upload{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .thumbnail-box{
+    width: 86px;
+    height: 86px;
+  }
+  .logoBox{
+    position: relative;
+    width: 86px;
+  }
+  .icon-btn-container{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    fill: #f00;
+    transform: rotate(45deg);
+  }
+  .repeat-upload{
+    text-align: center;
+    margin-top: 10px;
+    height: auto;
+    .ant-upload{
+      color: #1EABF2;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      span{
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.title-container{
+  .title-btn-box{
+    button{
+      margin: 0 15px;
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+}

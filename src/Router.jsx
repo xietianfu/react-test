@@ -10,11 +10,12 @@ import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import LoadingComponent from './components/Load';
 import { persistor, store } from './redux/index';
+import UserLayout from './layouts/UserLayout';
 
 const history = createHistory();
 
 const AsyncHome = Loadable({
-  loader: () => import('./layouts/BasicLayout'),
+  loader: () => import('./layouts/CenterLayout'),
   loading: LoadingComponent,
 });
 
@@ -38,8 +39,9 @@ const RouteMap = () => (
         <Router history={history}>
           {/* <Router> */}
           <Switch>
+            {/* <Route path="/login" component={UserLayout} /> */}
+            <Route exact path="/login" component={AsyncLogin} />
             <Route path="/" component={AsyncHome} />
-            <Route path="/login" component={AsyncLogin} />
           </Switch>
         </Router>
       </PersistGate>

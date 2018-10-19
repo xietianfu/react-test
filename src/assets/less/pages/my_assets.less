@@ -1,0 +1,174 @@
+.my-assets-container{
+  .my-assets-info{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 15px 0;
+    margin-bottom: 45px;
+    li{
+      padding: 0 36px;
+      p{
+        margin-bottom: 8px;
+        font-size: 18px;
+        color: #999;
+        span{
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+      &.border-left {
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1px;
+          height: 100%;
+          background: #e5e5e5;
+        }
+      }
+      .tooptip-children{
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 0;
+        svg{
+          fill: #666;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+    .my-assets-money{
+      font-size: 0;
+      .my-assets-check {
+        margin-left: 16px;
+        color: #1EABF2;
+        font-size: 16px;
+        cursor: pointer;
+        vertical-align: middle;
+      }
+      button{
+        margin-left: 84px;
+        vertical-align: middle;
+        span{
+          color: #fff;
+        }
+      }
+      p{
+        margin-bottom: 0;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 35px;
+        color: #333;
+      }
+      &::after{
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+  .my-assets-container{
+    display: flex;
+  }
+  .my-assets-table-container{
+    padding: 0 15px;
+    p {
+      position: relative;
+      margin-bottom: 0;
+    }
+    td {
+      padding: 15px 20px;
+    }
+    .orange-status {
+      color: #FF7200;
+      svg{
+        display: none;
+      }
+    }
+    .green-status {
+      color: #37A407;
+      svg{
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        margin-top: -7px;
+        width: 14px;
+        height: 14px;
+        fill: #37A407;
+      }
+    }
+  }
+  .no-data-container{
+    padding: 140px 0;
+  }
+}
+
+.tooltip-money-container{
+  .ant-tooltip-inner{
+    width: auto;
+    max-width: none;
+  }
+}
+
+.accountModal{
+  .ant-modal-body {
+    padding: 30px 30px 24px;
+    .form-inline-lable{
+      width: 124px;
+    }
+  }
+  .withdrawModalTip{
+    font-size: 14px;
+    color: #666;
+  }
+  .deliverModalBtn{
+    padding-bottom: 0;
+  }
+  .account-input-container{
+    padding: 12px 0;
+    width: 100%;
+    font-size: 20px;
+    border-bottom: 1px solid #E5E5E5;
+    input {
+      width: 300px;
+      border: 0;
+      vertical-align: middle;
+      &::placeholder{
+        color: #999;
+      }
+    }
+    span{
+      color: #333;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .account-input-tip{
+    margin: 10px 0 30px;
+    height: 20px;
+    line-height: 20px;
+    color: #FF7200;
+    font-size: 14px;
+  }
+}
+
+button.btn-disabled-cancel{
+  border-color: rgba(204, 204, 204, 1);
+  background: rgba(204, 204, 204, 1);
+  cursor: not-allowed;
+  &:focus{
+    border-color: rgba(204, 204, 204, 1);
+    background: rgba(204, 204, 204, 1);
+  }
+  &:hover{
+    border-color: rgba(204, 204, 204, 1);
+    background: rgba(204, 204, 204, 1);
+  }
+  &:active{
+    border-color: rgba(204, 204, 204, 1);
+    background: rgba(204, 204, 204, 1);
+  }
+}
+
+  

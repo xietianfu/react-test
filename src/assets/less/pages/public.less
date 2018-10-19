@@ -1,0 +1,259 @@
+.notice-line{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 22px;
+  background: #FFD25A;
+  height: 39px;
+  line-height: 39px;
+  font-size: 15px;
+  align-items: center;
+  p{
+    margin-bottom: 0;
+  }
+  svg{
+    margin-right: 6px;
+  }
+}
+
+button.btn-cancel{
+  border-color: rgba(204, 204, 204, 1);
+  background: rgba(204, 204, 204, 1);
+  &:hover{
+    border-color: rgba(204, 204, 204, 0.9);
+    background: rgba(204, 204, 204, 0.9);
+  }
+  &:active{
+    border-color: rgba(204, 204, 204, 0.9);
+    background: rgba(204, 204, 204, 0.9);
+  }
+}
+
+.btn-width88{
+  width: 88px;
+}
+
+.icon-btn-container{
+  cursor: pointer;
+}
+
+.imgModal{
+  img{
+    width: 100%;
+  }
+  .ant-modal-footer{
+    display: none;
+  }
+  .ant-modal-close{
+    right: -14px;
+    top: -14px;
+  }
+  .ant-modal-close-x{
+    &::after{
+      font-size: 20px;
+    }
+  }
+}
+
+.title-info-container{
+  .title-info-introduce{
+    height:40px;
+    line-height: 40px;
+    padding-left: 12px;
+    border: 1px solid #E1E1E1;
+    background: rgba(244,244,244,1);
+    color: #666;
+    font-size: 14px;
+    span, svg{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    svg{
+      fill: #1EABF2;
+    }
+  }
+  .title-info-client{
+    display: flex;
+    height: 57px;
+    line-height: 57px;
+    border: 1px solid #E1E1E1;
+    border-top: 0;
+    padding-left: 12px;
+    div{
+      margin-right: 30px;
+      font-size: 16px;
+      color: #666;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    span{
+      color: #333;
+    }
+  }
+}
+
+.content-info-container{
+  .content-info-title{
+    font-size: 16px;
+    color: #4076EA;
+    margin: 20px 0;
+    span{
+      margin-left: 6px;
+      color: #999999;
+      font-size: 14px;
+    }
+  }
+  .content-info-con{
+    &.ul-block {
+      // margin-top: 10px;
+      ul{
+        width: 100%;
+        display: block;
+      }
+    }
+    ul{
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 0;
+      vertical-align: top;
+      li{
+        display: inline-block;
+        width: 25%;
+        &.vin-item{
+          width: 100%;
+          .key,.value{
+            display: inline-block;
+          }
+        }
+      }
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+    li{
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #666;
+      span{
+        color: #333;
+      }
+      &.order-introduce-con-item-money{
+        span {
+          font-weight: bold;
+          margin-right: 10px;
+        }
+        i{
+          color: #FF7200;
+          font-style: normal;
+        }
+      }
+      &:not(:last-child){
+        margin-bottom: 10px;
+      }
+      .value{
+        margin-left: 24px;
+        input{
+          width: 310px;
+          height: 36px;
+        }
+        button{
+          height: 36px;
+          span{
+            color: #fff;
+          }
+        }
+      }
+      svg{
+        margin-left: 10px;
+        cursor: pointer;
+        width: 14px;
+        height: 14px;
+        fill: #333;
+      }
+      p{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+.thumbnail-box{
+  overflow: hidden;
+  img{
+    width: 100%;
+  }
+}
+
+.public-calendar-picker.ant-calendar-picker{
+  width: 220px;
+  margin-left: 20px;
+  background: #f6f6f6;
+  .ant-calendar-picker-input{
+    background: transparent;
+  }
+}
+
+#headerUserBox{
+  .ant-popover{
+    width:214px;
+    .ant-popover-inner-content{
+      padding: 0 15px 15px;
+    }
+    .salesperson-container{
+      display: flex;
+      align-items: center;
+      padding-top: 20px;
+      .server-phone{
+        color: #666;
+      }
+      .username-phone{
+        color: #333;
+      }
+      span{
+        display: inline-block;
+      }
+      svg{
+        fill: #598AF4;
+        width: 40px;
+        height: 40px;
+      }
+    }
+    ul{
+      margin-bottom: 0;
+    }
+    li{
+      position: relative;
+      padding: 16px 0;
+      &.border-dashed-bottom{
+        &::after{
+          content: '';
+          position: absolute;
+          left: -6px;
+          right: -6px;
+          bottom: 0;
+          border-bottom: 1px dashed #e1e1e1;
+          height: 1px;
+        }
+      }
+      .user-dropdown-title{
+        margin-right: 8px;
+        color: #333;
+        font-size: 16px;
+      }
+      p{
+        margin-top: 4px;
+        color: #666;
+        font-size: 14px;
+      }
+    }
+    button{
+      display: block;
+      margin-top: 20px;
+      height: 36px;
+      width: 100%;
+    }
+    p{
+      margin-bottom: 0;
+    }
+  }
+}

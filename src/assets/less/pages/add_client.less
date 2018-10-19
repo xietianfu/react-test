@@ -1,0 +1,54 @@
+.add-client-container{
+  .form-inline-contacts{
+    position: relative;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px;
+    &.form-inline-value{
+      input{
+        border: 0;
+      }
+      &::after{
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-top: -11px;
+        width: 1px;
+        height: 22px;
+        background: #E1E1E1;
+      }
+    }
+    
+  }
+  .form-inline-more{
+    display: flex;
+    justify-content: space-between;
+    .ant-select{
+      flex: 0 1 32%;
+    }
+  }
+
+  .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+    border-color: #e1e1e1;
+  }
+
+  .form-inline-value{
+    .ant-input-suffix{
+      button{
+        color: #666;
+        border: transparent;
+        background: transparent;
+      }
+    }
+  }
+  
+  .ant-cascader-picker{
+    width: 100%;
+    .ant-cascader-picker-label{
+      font-size: 16px;
+    }
+  }
+  .ant-cascader-picker-disabled{
+    color: #999;
+  }
+}

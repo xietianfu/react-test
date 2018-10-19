@@ -1,7 +1,9 @@
-export default (state = { loginStatus: false }, action) => {
+export default (state = { user: {} }, action) => {
   switch (action.type) {
-    case 'changeLogin':
-      return { ...state, loginStatus: action.data };
+    case 'login':
+      return { ...state, user: action.data };
+    case 'logout':
+      return { ...state, user: action.data };
     default:
       return state;
   }

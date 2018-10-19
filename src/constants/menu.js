@@ -1,43 +1,59 @@
 import { isUrl } from '../utils/utils';
 
-const menuData = [
+/** 路由列表 */
+export const ROUTE_PATH_LIST = {
+  login: {
+    path: '/login',
+  },
+  home: {
+    path: '/home', // 首页
+    // 子路由
+    choice: {
+      path: '/home/choice', // 车型选择
+    },
+  },
+  selectCar: {
+    path: '/select-car', // 选择车型
+  },
+  record: {
+    path: '/record', // 报价记录
+  },
+  price: {
+    path: '/price', // 价格详情
+
+    oe: {
+      path: '/price/oe', // oe号价格详情
+    },
+    vin: {
+      path: '/price/vin', // vin号价格详情
+    },
+  },
+  maintain: {
+    path: '/maintain',
+  },
+};
+
+export const menuData = [
   {
-    name: '基础包',
+    name: '首页',
     icon: 'code',
-    path: 'package',
-    authority: '01',
-    children: [
-      {
-        name: 'redux',
-        path: 'redux',
-        icon: 'dashboard',
-        authority: '01',
-      },
-      {
-        name: 'axios',
-        path: 'axios',
-        authority: '02',
-      },
-      {
-        name: 'immutable',
-        path: 'immutable',
-      },
-      {
-        name: 'react-loadable',
-        path: 'react-loadable',
-      },
-    ],
+    path: 'home',
   },
   {
-    name: '自定义组件',
-    path: 'custom',
-    authority: '02',
-    children: [
-      {
-        name: 'echart',
-        path: 'echart',
-      },
-    ],
+    name: '选择车型',
+    path: 'select-car',
+  },
+  {
+    name: '报价记录',
+    path: 'record',
+  },
+  {
+    name: '价格详情',
+    path: 'price',
+  },
+  {
+    name: '查保养详情',
+    path: 'maintain',
   },
 ];
 
@@ -75,5 +91,4 @@ function formatter(data, parentPath = '/', parentAuthority) {
   });
 }
 
-// eslint-disable-next-line
 export const getMenuData = () => formatter(menuData);

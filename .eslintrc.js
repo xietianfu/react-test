@@ -15,7 +15,9 @@ module.exports = {
     'react/sort-comp': 0,
     'react/jsx-wrap-multilines': 0,
     'react/no-unused-state': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
     // common rules
+    'object-curly-newline': 0,
     'import/no-extraneous-dependencies': 0,
     'import/first': 0,
     'comma-dangle': 0,
