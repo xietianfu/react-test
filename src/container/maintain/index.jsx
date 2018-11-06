@@ -57,6 +57,8 @@ const Wrap = styled(MainWrap)`
   .recommend {
     margin: 0 42em 0 4px;
     border-bottom: 1px solid #1199e7;
+    cursor: pointer;
+    color: #1199e7;
   }
 
   .viewBtn {

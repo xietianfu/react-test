@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import CheckListModal from './CheckListModal';
 import { Button } from 'antd';
+import AutoSettingModal from './AutoSettingModal';
+import modal from '../../models/modal';
 
 class SelectSetting extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectList: [],
+      settingModal: {
+        visible: false,
+      },
     };
   }
 
@@ -101,14 +106,22 @@ class SelectSetting extends Component {
           <tr>
             <td className="rowTitle">里程及时间</td>
             <td>
-              <a className="recommend">按行驶公里数推荐项目</a>
+              <span
+                className="recommend"
+                onClick={
+                  () => modal.changeVisible.apply(this, ['settingModal', true]) // eslint-disable-line
+                }
+              >
+                按行驶公里数推荐项目
+              </span>
               <CheckListModal />
               <Button className="viewBtn" type="primary">
                 查看保养方案
-              </Button>{' '}
+              </Button>
             </td>
           </tr>
         </tbody>
+        <AutoSettingModal />
       </table>
     );
   }

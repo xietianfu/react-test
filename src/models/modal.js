@@ -8,6 +8,7 @@ export default {
     changeState({ ...params, visible: false, type: false });
   },
   changeVisible(name, param) {
+    console.log('dsf');
     this.setState({
       [name]: {
         visible: param,
