@@ -28,7 +28,7 @@ class SiderBar extends Component {
                 title={
                   <span>
                     <Icon type={item.icon} />
-                    <span>{item.name}</span>
+                    <span>{item.title ? item.title : item.name}</span>
                   </span>
                 }
               >
@@ -43,7 +43,9 @@ class SiderBar extends Component {
     if (!menuData.hideInMenu) {
       return (
         <Menu.Item key={menuData.name} disabled={menuData.disabled}>
-          <Link to={menuData.path}>{menuData.name}</Link>
+          <Link to={menuData.path}>
+            {menuData.title ? menuData.title : menuData.name}
+          </Link>
         </Menu.Item>
       );
     }

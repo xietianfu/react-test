@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add babel-preset-es2015,babel-preset-react,babel-preset-stage-0,babel-plugin-transform-class-properties --dev
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add const CopyWebpackPlugin = require copy-webpack-plugin
 
 PATH: 
-  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\jack\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Microsoft VS Code\bin;C:\Users\jack\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\jack\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\jack\AppData\Local\Yarn\bin
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\jack\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Pandoc\;C:\Program Files\Git\cmd;C:\Users\jack\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\jack\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\jack\AppData\Local\Yarn\bin;C:\Users\jack\AppData\Local\Programs\Microsoft VS Code\bin
 
 Yarn version: 
   1.7.0
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: http://registry.npm.taobao.org/babel-preset-es2015,babel-preset-react,babel-preset-stage-0,babel-plugin-transform-class-properties: Not found
+  Error: http://registry.npm.taobao.org/CopyWebpackPlugin: Not found
       at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65656:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:134675:22)
       at emitTwo (events.js:126:13)
@@ -31,6 +31,7 @@ npm manifest:
     "devDependencies": {
       "babel-eslint": "^8.2.6",
       "babel-plugin-syntax-dynamic-import": "^6.18.0",
+      "babel-plugin-transform-decorators-legacy": "^1.3.5",
       "babel-polyfill": "^6.26.0",
       "babel-preset-env": "^1.7.0",
       "babel-preset-es2015-ie": "^6.7.0",
@@ -50,6 +51,7 @@ npm manifest:
       "less": "^3.8.0",
       "less-loader": "^4.1.0",
       "react-hot-loader": "^4.3.4",
+      "redux-devtools-extension": "^2.13.5",
       "style-loader": "^0.21.0",
       "uglifyjs-webpack-plugin": "^1.2.7",
       "webpack": "^4.16.3",
@@ -58,7 +60,7 @@ npm manifest:
       "webpack-merge": "^4.1.3"
     },
     "scripts": {
-      "start": "webpack-dev-server --hot --open --env.HOST=10.0.2.242 --config  ./config/webpack.dev.js",
+      "start": "webpack-dev-server --hot --config  ./config/webpack.dev.js",
       "build": "webpack --config ./config/webpack.prod.js",
       "analyzer": "webpack --config ./config/webpack.analyzer.js"
     },
@@ -70,17 +72,28 @@ npm manifest:
       "babel-loader": "^7.1.5",
       "babel-plugin-add-module-exports": "^0.2.1",
       "babel-plugin-import": "^1.8.0",
+      "babel-plugin-transform-class-properties": "^6.24.1",
       "babel-plugin-transform-runtime": "^6.23.0",
       "babel-preset-es2015": "^6.24.1",
       "babel-preset-react": "^6.24.1",
       "babel-preset-stage-0": "^6.24.1",
       "babel-preset-stage-3": "^6.24.1",
+      "echarts": "^4.1.0",
+      "immutable": "^3.8.2",
+      "intro.js": "^2.9.3",
       "lodash": "^4.17.10",
+      "persist-js": "^0.3.1",
       "react": "^16.4.1",
       "react-dom": "^16.4.1",
+      "react-grid-layout": "^0.16.6",
       "react-loadable": "^5.4.0",
+      "react-redux": "^5.0.7",
       "react-router-dom": "^4.3.1",
+      "react-router-redux": "^4.0.8",
       "redux": "^4.0.0",
+      "redux-persist": "^5.10.0",
+      "redux-thunk": "^2.3.0",
+      "sortablejs": "^1.7.0",
       "webpack-dev-server": "^3.1.5"
     }
   }
@@ -865,7 +878,7 @@ Lockfile:
     version "6.13.0"
     resolved "http://registry.npm.taobao.org/babel-plugin-syntax-class-properties/download/babel-plugin-syntax-class-properties-6.13.0.tgz#d7eb23b79a317f8543962c505b827c7d6cac27de"
   
-  babel-plugin-syntax-decorators@^6.13.0:
+  babel-plugin-syntax-decorators@^6.1.18, babel-plugin-syntax-decorators@^6.13.0:
     version "6.13.0"
     resolved "http://registry.npm.taobao.org/babel-plugin-syntax-decorators/download/babel-plugin-syntax-decorators-6.13.0.tgz#312563b4dbde3cc806cee3e416cceeaddd11ac0b"
   
@@ -937,6 +950,14 @@ Lockfile:
       babel-plugin-syntax-class-properties "^6.8.0"
       babel-runtime "^6.22.0"
       babel-template "^6.24.1"
+  
+  babel-plugin-transform-decorators-legacy@^1.3.5:
+    version "1.3.5"
+    resolved "http://registry.npm.taobao.org/babel-plugin-transform-decorators-legacy/download/babel-plugin-transform-decorators-legacy-1.3.5.tgz#0e492dffa0edd70529072887f8aa86d4dd8b40a1"
+    dependencies:
+      babel-plugin-syntax-decorators "^6.1.18"
+      babel-runtime "^6.2.0"
+      babel-template "^6.3.0"
   
   babel-plugin-transform-decorators@^6.24.1:
     version "6.24.1"
@@ -1383,14 +1404,14 @@ Lockfile:
       mkdirp "^0.5.1"
       source-map-support "^0.4.15"
   
-  babel-runtime@6.x, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0:
+  babel-runtime@6.x, babel-runtime@^6.18.0, babel-runtime@^6.2.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0:
     version "6.26.0"
     resolved "http://registry.npm.taobao.org/babel-runtime/download/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
     dependencies:
       core-js "^2.4.0"
       regenerator-runtime "^0.11.0"
   
-  babel-template@^6.24.1, babel-template@^6.26.0:
+  babel-template@^6.24.1, babel-template@^6.26.0, babel-template@^6.3.0:
     version "6.26.0"
     resolved "http://registry.npm.taobao.org/babel-template/download/babel-template-6.26.0.tgz#de03e2d16396b069f46dd9fff8521fb1a0e35e02"
     dependencies:
@@ -2404,6 +2425,12 @@ Lockfile:
     dependencies:
       jsbn "~0.1.0"
       safer-buffer "^2.1.0"
+  
+  echarts@^4.1.0:
+    version "4.1.0"
+    resolved "http://registry.npm.taobao.org/echarts/download/echarts-4.1.0.tgz#d588c95f73c1a9928b9c73d5b769751c3185bcdc"
+    dependencies:
+      zrender "4.0.4"
   
   ee-first@1.1.1:
     version "1.1.1"
@@ -3472,7 +3499,7 @@ Lockfile:
     version "0.5.5"
     resolved "http://registry.npm.taobao.org/image-size/download/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
   
-  immutable@^3.7.4:
+  immutable@^3.7.4, immutable@^3.8.2:
     version "3.8.2"
     resolved "http://registry.npm.taobao.org/immutable/download/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
   
@@ -3571,7 +3598,11 @@ Lockfile:
     version "1.0.0"
     resolved "http://registry.npm.taobao.org/intersperse/download/intersperse-1.0.0.tgz#f2561fb1cfef9f5277cc3347a22886b4351a5181"
   
-  invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.4:
+  intro.js@^2.9.3:
+    version "2.9.3"
+    resolved "http://registry.npm.taobao.org/intro.js/download/intro.js-2.9.3.tgz#001d9a7bca66d8f4d2d0253c9b3345e9ae4320c3"
+  
+  invariant@^2.0.0, invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.4:
     version "2.2.4"
     resolved "http://registry.npm.taobao.org/invariant/download/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
     dependencies:
@@ -4005,6 +4036,10 @@ Lockfile:
       p-locate "^3.0.0"
       path-exists "^3.0.0"
   
+  lodash-es@^4.17.5:
+    version "4.17.10"
+    resolved "http://registry.npm.taobao.org/lodash-es/download/lodash-es-4.17.10.tgz#62cd7104cdf5dd87f235a837f0ede0e8e5117e05"
+  
   lodash._getnative@^3.0.0:
     version "3.9.1"
     resolved "http://registry.npm.taobao.org/lodash._getnative/download/lodash._getnative-3.9.1.tgz#570bc7dede46d61cdcde687d65d3eecbaa3aaff5"
@@ -4024,6 +4059,10 @@ Lockfile:
   lodash.isarray@^3.0.0:
     version "3.0.4"
     resolved "http://registry.npm.taobao.org/lodash.isarray/download/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
+  
+  lodash.isequal@^4.0.0:
+    version "4.5.0"
+    resolved "http://registry.npm.taobao.org/lodash.isequal/download/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   
   lodash.keys@^3.1.2:
     version "3.1.2"
@@ -4790,6 +4829,10 @@ Lockfile:
     version "2.1.0"
     resolved "http://registry.npm.taobao.org/performance-now/download/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   
+  persist-js@^0.3.1:
+    version "0.3.1"
+    resolved "http://registry.npm.taobao.org/persist-js/download/persist-js-0.3.1.tgz#69bc06128560f82029aed5217da27f2045eee8e9"
+  
   pify@^2.0.0:
     version "2.3.0"
     resolved "http://registry.npm.taobao.org/pify/download/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
@@ -5415,6 +5458,23 @@ Lockfile:
       object-assign "^4.1.1"
       prop-types "^15.6.0"
   
+  react-draggable@3.x, "react-draggable@^2.2.6 || ^3.0.3":
+    version "3.0.5"
+    resolved "http://registry.npm.taobao.org/react-draggable/download/react-draggable-3.0.5.tgz#c031e0ed4313531f9409d6cd84c8ebcec0ddfe2d"
+    dependencies:
+      classnames "^2.2.5"
+      prop-types "^15.6.0"
+  
+  react-grid-layout@^0.16.6:
+    version "0.16.6"
+    resolved "http://registry.npm.taobao.org/react-grid-layout/download/react-grid-layout-0.16.6.tgz#9b2407a2b946c2260ebaf66f13b556e1da4efeb2"
+    dependencies:
+      classnames "2.x"
+      lodash.isequal "^4.0.0"
+      prop-types "15.x"
+      react-draggable "3.x"
+      react-resizable "1.x"
+  
   react-hot-loader@^4.3.4:
     version "4.3.4"
     resolved "http://registry.npm.taobao.org/react-hot-loader/download/react-hot-loader-4.3.4.tgz#4f9bdd55bb20d77a6ae8931fa1c187e5f0ce6279"
@@ -5445,6 +5505,24 @@ Lockfile:
     dependencies:
       prop-types "^15.5.0"
   
+  react-redux@^5.0.7:
+    version "5.0.7"
+    resolved "http://registry.npm.taobao.org/react-redux/download/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"
+    dependencies:
+      hoist-non-react-statics "^2.5.0"
+      invariant "^2.0.0"
+      lodash "^4.17.5"
+      lodash-es "^4.17.5"
+      loose-envify "^1.1.0"
+      prop-types "^15.6.0"
+  
+  react-resizable@1.x:
+    version "1.7.5"
+    resolved "http://registry.npm.taobao.org/react-resizable/download/react-resizable-1.7.5.tgz#83eb75bb3684da6989bbbf4f826e1470f0af902e"
+    dependencies:
+      prop-types "15.x"
+      react-draggable "^2.2.6 || ^3.0.3"
+  
   react-router-dom@^4.3.1:
     version "4.3.1"
     resolved "http://registry.npm.taobao.org/react-router-dom/download/react-router-dom-4.3.1.tgz#4c2619fc24c4fa87c9fd18f4fb4a43fe63fbd5c6"
@@ -5455,6 +5533,10 @@ Lockfile:
       prop-types "^15.6.1"
       react-router "^4.3.1"
       warning "^4.0.1"
+  
+  react-router-redux@^4.0.8:
+    version "4.0.8"
+    resolved "http://registry.npm.taobao.org/react-router-redux/download/react-router-redux-4.0.8.tgz#227403596b5151e182377dab835b5d45f0f8054e"
   
   react-router@^4.3.1:
     version "4.3.1"
@@ -5562,6 +5644,18 @@ Lockfile:
     dependencies:
       indent-string "^2.1.0"
       strip-indent "^1.0.1"
+  
+  redux-devtools-extension@^2.13.5:
+    version "2.13.5"
+    resolved "http://registry.npm.taobao.org/redux-devtools-extension/download/redux-devtools-extension-2.13.5.tgz#3ff34f7227acfeef3964194f5f7fc2765e5c5a39"
+  
+  redux-persist@^5.10.0:
+    version "5.10.0"
+    resolved "http://registry.npm.taobao.org/redux-persist/download/redux-persist-5.10.0.tgz#5d8d802c5571e55924efc1c3a9b23575283be62b"
+  
+  redux-thunk@^2.3.0:
+    version "2.3.0"
+    resolved "http://registry.npm.taobao.org/redux-thunk/download/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
   
   redux@^4.0.0:
     version "4.0.0"
@@ -6007,6 +6101,10 @@ Lockfile:
     dependencies:
       faye-websocket "^0.10.0"
       uuid "^3.0.1"
+  
+  sortablejs@^1.7.0:
+    version "1.7.0"
+    resolved "http://registry.npm.taobao.org/sortablejs/download/sortablejs-1.7.0.tgz#80a2b2370abd568e1cec8c271131ef30a904fa28"
   
   source-list-map@^2.0.0:
     version "2.0.0"
@@ -6865,3 +6963,7 @@ Lockfile:
       which-module "^2.0.0"
       y18n "^3.2.1 || ^4.0.0"
       yargs-parser "^10.1.0"
+  
+  zrender@4.0.4:
+    version "4.0.4"
+    resolved "http://registry.npm.taobao.org/zrender/download/zrender-4.0.4.tgz#910e60d888f00c9599073f23758dd23345fe48fd"

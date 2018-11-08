@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const rootPath = path.resolve(__dirname, '..');
 
@@ -21,6 +22,12 @@ module.exports = {
       chunks: [],
       template: path.join(rootPath, '/src/pages/updata.html'),
     }),
+    new CopyWebpackPlugin([
+      {
+        from: 'src/assets/styles',
+        to: 'assets/styles',
+      },
+    ]),
   ],
   optimization: {
     splitChunks: {
@@ -59,7 +66,7 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        exclude: [/node_modules/],
+        // exclude: [/node_modules/],
         use: [
           require.resolve('style-loader'),
           {

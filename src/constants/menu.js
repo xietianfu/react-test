@@ -48,6 +48,26 @@ const menuData = [
         name: 'echart',
         path: 'echart',
       },
+      {
+        name: 'gridLayout',
+        path: 'grid-layout',
+      },
+      {
+        name: 'intro',
+        path: 'intro',
+      },
+    ],
+  },
+  {
+    name: '混合组件',
+    path: 'mixin',
+    authority: '02',
+    children: [
+      {
+        title: '图表-拖动',
+        name: 'mix1',
+        path: 'mix1',
+      },
     ],
   },
 ];

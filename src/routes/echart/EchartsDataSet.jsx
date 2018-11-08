@@ -42,6 +42,7 @@ class Echart extends Component {
       xAxis = { type: 'category', gridIndex: 0 },
       yAxis = { gridIndex: 0 },
       height = '400px',
+      width = '400px',
     } = this.props;
     // 基于准备好的dom，初始化echarts实例
     this.myChart = echarts.init(
@@ -51,6 +52,7 @@ class Echart extends Component {
         // 在数据量比较少的情况下使用svg，减少内存调用
         renderer: 'svg',
         height,
+        width,
       },
     );
     // 绘制图表
@@ -67,23 +69,18 @@ class Echart extends Component {
     });
   }
 
-  handleAddData = () => {
-    const { chartType, xAxis, series } = this.props;
-    series[0].data = [...series[0].data, 30];
-    series[1].data = [...series[1].data, 60];
-
-    this.myChart.setOption({
-      xAxis: {
-        data: [...xAxis, '羽绒服'],
-      },
-      series: buildSeries(chartType, series),
-    });
-  };
-
   render() {
+    const { width, height } = this.props;
     return (
       <div>
-        <Button onClick={() => this.handleAddData()}>新增数据</Button>
+        <Button
+          onClick={() => {
+            console.log('click');
+            this.myChart.resize({ width, height });
+          }}
+        >
+          Resize
+        </Button>
         <div id={this.random} style={{ maxWidth: '100%' }} />
       </div>
     );
