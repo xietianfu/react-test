@@ -27,11 +27,12 @@ const MenuBar = () => {
             onClick={e => {
               return addEl({
                 key: e.key,
+                type: e.key,
                 x: 0,
                 y: 0,
                 w: 4,
                 h: 20,
-                dom: <Echart type={e.key} />,
+                dom: <Echart id={e.key} />,
               });
             }}
             mode="inline"

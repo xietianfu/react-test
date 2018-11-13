@@ -27,10 +27,10 @@ class Mix extends Component {
     };
     this.editEl = (key, param) => {
       const { gridElements } = this.state;
-      originalEl = gridElements.find(item => item.key === key);
-      const newEl = { ...originalEl, param };
+      const originalEl = gridElements.find(item => item.key === key);
+      const newEl = { ...originalEl, ...param };
       this.setState({
-        gridElements: [...gridElement.filter(item => item.key !== key), newEl],
+        gridElements: [...gridElements.filter(item => item.key !== key), newEl],
       });
     };
     this.resize = arr => {

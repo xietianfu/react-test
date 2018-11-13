@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
 import echarts from 'echarts';
-import { Button } from 'antd';
-import './wonderland';
+import React, { Component } from 'react';
 import './macarons';
-import { buildSeries } from '../../utils/chart';
+import './wonderland';
 
 function buildDatasetSeries(type, source) {
+  console.log(type);
   // 判断type传入的类型
   if (typeof type === 'string') {
-    const series = source[0].map(() => ({ type }));
+    let series = source[0].map(() => ({ type }));
     series.pop();
+    console.log(series);
     return series;
   }
   if (Array.isArray(type)) {
@@ -55,35 +55,85 @@ class Echart extends Component {
         width,
       },
     );
-    // 绘制图表
-    this.myChart.setOption({
-      title: { text: 'ECharts 入门示例' },
-      dataset: {
-        dimension,
-        source,
-      },
-      tooltip: {},
-      xAxis,
-      yAxis,
-      series: buildDatasetSeries(chartType, source),
-    });
+
+    this.setOption();
   }
 
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    const {
+      chartType,
+      dimension = [],
+      source = [],
+      xAxis = { type: 'category', gridIndex: 0 },
+      yAxis = { gridIndex: 0 },
+      height = '400px',
+      width = '400px',
+    } = this.props;
+    console.log('getSnapshotBeforeUpdate');
+    this.setOption();
+    this.myChart.resize({ width, height });
+  }
+
+  componentWillUnmount() {
+    this.myChart = null;
+  }
+
+  shouldHideCoord = chartType => {
+    console.log(chartType);
+
+    switch (chartType) {
+      case 'pie':
+        return true;
+      default:
+        return false;
+    }
+  };
+
+  setOption = () => {
+    const {
+      chartType,
+      dimension = [],
+      source = [],
+      xAxis = { type: 'category', gridIndex: 0 },
+      yAxis = { gridIndex: 0 },
+      height = '400px',
+      width = '400px',
+      baseOption,
+    } = this.props;
+    const { title } = baseOption;
+    console.log(title);
+    if (this.shouldHideCoord(chartType)) {
+      // 绘制图表
+      this.myChart.setOption({
+        title: { text: title || 'ECharts 入门示例' },
+        dataset: {
+          // dimension,
+          source,
+        },
+        xAxis: null,
+        yAxis: null,
+        tooltip: {},
+        series: buildDatasetSeries(chartType, source),
+      });
+    } else {
+      // 绘制图表
+      this.myChart.setOption({
+        title: { text: title || 'ECharts 入门示例' },
+        dataset: {
+          // dimension,
+          source,
+        },
+        tooltip: {},
+        xAxis,
+        yAxis,
+        series: buildDatasetSeries(chartType, source),
+        // series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }],
+      });
+    }
+  };
+
   render() {
-    const { width, height } = this.props;
-    return (
-      <div>
-        <Button
-          onClick={() => {
-            console.log('click');
-            this.myChart.resize({ width, height });
-          }}
-        >
-          Resize
-        </Button>
-        <div id={this.random} style={{ maxWidth: '100%' }} />
-      </div>
-    );
+    return <div id={this.random} style={{ maxWidth: '100%' }} />;
   }
 }
 

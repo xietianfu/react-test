@@ -4,8 +4,6 @@ import EchartsDataSet from './EchartsDataSet';
 import styles from '../../assets/styles/index.less';
 import { GridElementCTX } from '../mix1/index';
 
-const axis = ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'];
-
 const dimension = ['product', '2012', '2013', '2014', '2015'];
 const source = [
   ['product', '2012', '2013', '2014', '2015'],
@@ -21,20 +19,22 @@ class Echarts extends Component {
   }
 
   render() {
-    const { type } = this.props;
+    const { id } = this.props;
 
     return (
       <GridElementCTX.Consumer>
         {({ elements }) => {
-          const el = elements.find(item => item.key === type);
-          console.log(el);
+          const el = elements.find(item => item.key === id);
           return (
             <EchartsDataSet
-              chartType={{ type }}
+              chartType={el.type}
               dimension={dimension}
               source={source}
               width={el.w ? `${el.w * 120}px` : undefined}
               height={el.h ? `${el.h * 15}px` : undefined}
+              baseOption={{
+                title: el.title,
+              }}
             />
           );
         }}

@@ -9,7 +9,7 @@ const Box = () => {
   return (
     <div className={style.layout}>
       <GridElementCTX.Consumer>
-        {({ elements, resize }) => {
+        {({ elements, resize, removeEl, editEl }) => {
           return (
             <ResponsiveGridLayout
               className={style.layout}
@@ -29,7 +29,9 @@ const Box = () => {
                   title={item.key}
                   data-grid={{ x: item.x, y: item.y, w: item.w, h: item.h }} // eslint-disable-line
                 >
-                  <Element title={item.key}>{item.dom}</Element>
+                  <Element title={item.key} removeEl={removeEl} editEl={editEl}>
+                    {item.dom}
+                  </Element>
                 </div>
               ))}
             </ResponsiveGridLayout>

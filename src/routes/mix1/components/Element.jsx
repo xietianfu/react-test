@@ -11,8 +11,11 @@ const Element = ({ title, removeEl, editEl, children }) => {
       bordered={false}
       actions={[
         <Icon type="setting" />,
-        <Icon type="edit" />,
-        <Icon type="delete" />,
+        <Icon
+          type="edit"
+          onClick={() => editEl(title, { title: 'ddklsdl' })}
+        />,
+        <Icon type="delete" onClick={() => removeEl(title)} />,
       ]}
     >
       {children}
