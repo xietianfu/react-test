@@ -15,6 +15,8 @@ module.exports = {
     'react/sort-comp': 0,
     'react/jsx-wrap-multilines': 0,
     'react/no-unused-state': 0,
+    'react/destructuring-assignment': 0,
+    'react/no-access-state-in-setstate': 0,
     // common rules
     'import/no-extraneous-dependencies': 0,
     'import/first': 0,

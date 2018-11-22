@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
+import Echart from '../echart';
 import GridLayoutBox from './components/GridLayoutBox';
+import Header from './components/Header';
+import Setting from './components/Setting';
 
 export const GridElementCTX = React.createContext({
   elements: [],
@@ -10,32 +12,42 @@ export const GridElementCTX = React.createContext({
   resize: () => {},
 });
 
+export const ChartSetting = React.createContext({
+  config: {},
+  chartSeetingDrawer: {},
+  addConfig: () => {},
+  removeConfig: () => {},
+  editConfig: () => {},
+  toggleVisible: () => {},
+});
+
 class Mix extends Component {
   constructor(props) {
     super(props);
-    this.addEl = param => {
+    // GridElementCTX fun
+    this.addEl = key => {
       const { gridElements } = this.state;
       this.setState({
-        gridElements: [...gridElements, param],
+        gridElements: [...gridElements, key],
       });
     };
     this.removeEl = key => {
       const { gridElements } = this.state;
       this.setState({
-        gridElements: gridElements.filter(item => item.key !== key),
+        gridElements: gridElements.filter(item => item !== key),
       });
     };
-    this.editEl = (key, param) => {
-      const { gridElements } = this.state;
-      const originalEl = gridElements.find(item => item.key === key);
-      const newEl = { ...originalEl, ...param };
+    this.editEl = key => {
+      this.addConfig({ key });
+      this.toggleVisible();
+    };
+    this.removeEditKey = () => {
       this.setState({
-        gridElements: [...gridElements.filter(item => item.key !== key), newEl],
+        editKey: '',
       });
     };
     this.resize = arr => {
       const { gridElements } = this.state;
-      console.log(arr);
       this.setState({
         gridElements: gridElements.map(item => ({
           ...item,
@@ -43,27 +55,95 @@ class Mix extends Component {
         })),
       });
     };
+
+    // ChartSetting fun
+    this.addConfig = params => {
+      this.setState({
+        chartConfig: params,
+      });
+    };
+
+    this.removeConfig = () => {
+      this.setState({
+        chartConfig: {},
+      });
+    };
+
+    this.editConfig = params => {
+      const { chartConfig } = this.state;
+      // console.log(params);
+      this.setState({
+        chartConfig: { ...chartConfig, ...params },
+      });
+    };
+
+    this.toggleVisible = () => {
+      this.setState({
+        chartSeetingDrawer: {
+          ...this.state.chartSeetingDrawer,
+          visible: !this.state.chartSeetingDrawer.visible, // eslint-disable-line
+        },
+      });
+    };
+
     this.state = {
       gridElements: [],
+      editKey: '',
+      chartConfig: {},
+      chartSeetingDrawer: {
+        visible: false,
+      },
     };
   }
 
   render() {
-    const { gridElements } = this.state;
+    const {
+      gridElements,
+      chartConfig,
+      chartSeetingDrawer,
+      editKey,
+    } = this.state;
     return (
       <div>
-        <GridElementCTX.Provider
+        <ChartSetting.Provider
           value={{
-            elements: gridElements,
-            addEl: this.addEl,
-            editEl: this.editEl,
-            removeEl: this.removeEl,
-            resize: this.resize,
+            config: chartConfig,
+            chartSeetingDrawer,
+            addConfig: this.addConfig,
+            removeConfig: this.removeConfig,
+            editConfig: this.editConfig,
+            toggleVisible: this.toggleVisible,
           }}
         >
-          <Header />
-          <GridLayoutBox />
-        </GridElementCTX.Provider>
+          <GridElementCTX.Provider
+            value={{
+              elements: gridElements,
+              editKey,
+              addEl: this.addEl,
+              editEl: this.editEl,
+              removeEl: this.removeEl,
+              removeEditKey: this.removeEditKey,
+              resize: this.resize,
+            }}
+          >
+            <Header />
+            <Setting
+              config={chartConfig}
+              chartSeetingDrawer={chartSeetingDrawer}
+              addEl={this.addEl}
+              editConfig={this.editConfig}
+              removeConfig={this.removeConfig}
+              toggleVisible={this.toggleVisible}
+              editKey={key => {
+                console.log('ss', key);
+                this.setState({
+                  editKey: key,
+                });
+              }}
+            />
+            <GridLayoutBox elements={gridElements} />
+          </GridElementCTX.Provider>
+        </ChartSetting.Provider>
       </div>
     );
   }

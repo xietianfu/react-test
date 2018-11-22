@@ -4,12 +4,10 @@ import './macarons';
 import './wonderland';
 
 function buildDatasetSeries(type, source) {
-  console.log(type);
   // 判断type传入的类型
   if (typeof type === 'string') {
     let series = source[0].map(() => ({ type }));
     series.pop();
-    console.log(series);
     return series;
   }
   if (Array.isArray(type)) {
@@ -35,15 +33,7 @@ class Echart extends Component {
   }
 
   componentDidMount() {
-    const {
-      chartType,
-      dimension = [],
-      source = [],
-      xAxis = { type: 'category', gridIndex: 0 },
-      yAxis = { gridIndex: 0 },
-      height = '400px',
-      width = '400px',
-    } = this.props;
+    const { height = '400px', width = '400px' } = this.props;
     // 基于准备好的dom，初始化echarts实例
     this.myChart = echarts.init(
       document.getElementById(this.random),
@@ -60,16 +50,7 @@ class Echart extends Component {
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    const {
-      chartType,
-      dimension = [],
-      source = [],
-      xAxis = { type: 'category', gridIndex: 0 },
-      yAxis = { gridIndex: 0 },
-      height = '400px',
-      width = '400px',
-    } = this.props;
-    console.log('getSnapshotBeforeUpdate');
+    const { height = '400px', width = '400px' } = this.props;
     this.setOption();
     this.myChart.resize({ width, height });
   }
@@ -79,8 +60,6 @@ class Echart extends Component {
   }
 
   shouldHideCoord = chartType => {
-    console.log(chartType);
-
     switch (chartType) {
       case 'pie':
         return true;
@@ -92,42 +71,35 @@ class Echart extends Component {
   setOption = () => {
     const {
       chartType,
-      dimension = [],
       source = [],
       xAxis = { type: 'category', gridIndex: 0 },
       yAxis = { gridIndex: 0 },
-      height = '400px',
-      width = '400px',
       baseOption,
+      config,
     } = this.props;
+    console.log(config);
     const { title } = baseOption;
-    console.log(title);
+    const commonConfig = {
+      title: { text: title || 'ECharts 入门示例' },
+      dataset: {
+        source,
+      },
+      legend: config.legend,
+      series: buildDatasetSeries(chartType, source),
+    };
     if (this.shouldHideCoord(chartType)) {
       // 绘制图表
       this.myChart.setOption({
-        title: { text: title || 'ECharts 入门示例' },
-        dataset: {
-          // dimension,
-          source,
-        },
+        ...commonConfig,
         xAxis: null,
         yAxis: null,
-        tooltip: {},
-        series: buildDatasetSeries(chartType, source),
       });
     } else {
       // 绘制图表
       this.myChart.setOption({
-        title: { text: title || 'ECharts 入门示例' },
-        dataset: {
-          // dimension,
-          source,
-        },
-        tooltip: {},
+        ...commonConfig,
         xAxis,
         yAxis,
-        series: buildDatasetSeries(chartType, source),
-        // series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }],
       });
     }
   };

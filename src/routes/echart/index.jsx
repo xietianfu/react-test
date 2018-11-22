@@ -3,6 +3,7 @@ import Chart from './Echarts';
 import EchartsDataSet from './EchartsDataSet';
 import styles from '../../assets/styles/index.less';
 import { GridElementCTX } from '../mix1/index';
+import axios from 'axios';
 
 const dimension = ['product', '2012', '2013', '2014', '2015'];
 const source = [
@@ -18,6 +19,19 @@ class Echarts extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    const { id } = this.props;
+    axios
+      .get('/api/chart/detail', {
+        params: {
+          chartId: id,
+        },
+      })
+      .then(res => {
+        console.log(res);
+      });
+  }
+
   render() {
     const { id } = this.props;
 
@@ -25,16 +39,17 @@ class Echarts extends Component {
       <GridElementCTX.Consumer>
         {({ elements }) => {
           const el = elements.find(item => item.key === id);
+          console.log('el:', el);
           return (
             <EchartsDataSet
-              chartType={el.type}
-              dimension={dimension}
-              source={source}
-              width={el.w ? `${el.w * 120}px` : undefined}
-              height={el.h ? `${el.h * 15}px` : undefined}
+              chartType={el.type} // 图表类型
+              source={el.data} // 图表数据
+              width={el.w ? `${el.w * 120}px` : undefined} // 图表宽度
+              height={el.h ? `${el.h * 15}px` : undefined} // 图表高度
               baseOption={{
                 title: el.title,
               }}
+              config={el.config}
             />
           );
         }}

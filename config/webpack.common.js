@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const rootPath = path.resolve(__dirname, '..');
+const srcPath = path.resolve(rootPath, 'src');
 
 module.exports = {
   entry: {
@@ -50,6 +51,9 @@ module.exports = {
   // 自动处理文件的后缀，解决引入包必须添加后缀的问题。
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      '@components': path.join(srcPath, 'components'),
+    },
   },
 
   module: {

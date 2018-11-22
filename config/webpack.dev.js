@@ -24,7 +24,8 @@ module.exports = merge(common, {
     historyApiFallback: true,
     proxy: {
       '/api/*': {
-        target: 'http://localhost:36742',
+        // target: 'http://localhost:36742',
+        target: 'http://10.0.2.127:8888',
         secure: false, // 接受 运行在 https 上的服务
         changeOrigin: true,
       },
@@ -35,4 +36,5 @@ module.exports = merge(common, {
     // new webpack.NamedModulesPlugin(),
     // new webpack.HotModuleReplacementPlugin()
   ],
+  stats: 'errors-only',
 });

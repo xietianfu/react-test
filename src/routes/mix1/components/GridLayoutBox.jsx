@@ -1,36 +1,42 @@
 import React from 'react';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { GridElementCTX } from '../index'; // eslint-disable-line
-import style from './style.less'; // eslint-disable-line
-const ResponsiveGridLayout = WidthProvider(Responsive);
+import style from '../style.less'; // eslint-disable-line
 import Element from './Element';
+import Echart from './Echart';
+
+const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const Box = () => {
+  // console.log('gridLayoutbox');
   return (
     <div className={style.layout}>
       <GridElementCTX.Consumer>
-        {({ elements, resize, removeEl, editEl }) => {
+        {({ elements, resize, removeEl, editEl, editKey, removeEditKey }) => {
           return (
             <ResponsiveGridLayout
               className={style.layout}
-              autoSize
+              // autoSize
               isDraggable
               isResizable
-              breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-              cols={{ lg: 12, md: 12, sm: 6, xs: 4, xxs: 2 }}
-              onResizeStop={e => resize(e)}
+              breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }} // eslint-disable-line
+              cols={{ lg: 12, md: 12, sm: 6, xs: 4, xxs: 2 }} // eslint-disable-line
+              // onResizeStop={e => resize(e)}
               rowHeight={10}
-              // width={1000}
             >
-              {elements.map(item => (
+              {elements.map(key => (
                 <div
-                  key={item.key}
+                  key={key}
                   className={style.box}
-                  title={item.key}
-                  data-grid={{ x: item.x, y: item.y, w: item.w, h: item.h }} // eslint-disable-line
+                  title={key}
+                  data-grid={{ x: 0, y: 0, w: 10, h: 40 }} // eslint-disable-line
                 >
-                  <Element title={item.key} removeEl={removeEl} editEl={editEl}>
-                    {item.dom}
+                  <Element title={key} removeEl={removeEl} editEl={editEl}>
+                    <Echart
+                      id={key}
+                      editKey={editKey}
+                      removeEditKey={removeEditKey}
+                    />
                   </Element>
                 </div>
               ))}
