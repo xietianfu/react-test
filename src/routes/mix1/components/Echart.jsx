@@ -107,9 +107,12 @@ class Echart extends Component {
               this.setState({
                 source: res.data.data,
               });
+            })
+            .then(() => {
               this.setOption();
             });
         });
+
       this.myChart.resize({ width: null, height: null });
       removeEditKey();
     }
