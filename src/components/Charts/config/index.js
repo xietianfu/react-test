@@ -1,3 +1,3 @@
-import Legend from './legend';
+import Legend from './Legend';
 
 export { Legend };
