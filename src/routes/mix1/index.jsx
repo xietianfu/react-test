@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Echart from '../echart';
 import GridLayoutBox from './components/GridLayoutBox';
 import Header from './components/Header';
 import Setting from './components/Setting';
@@ -135,7 +134,6 @@ class Mix extends Component {
               removeConfig={this.removeConfig}
               toggleVisible={this.toggleVisible}
               editKey={key => {
-                console.log('ss', key);
                 this.setState({
                   editKey: key,
                 });

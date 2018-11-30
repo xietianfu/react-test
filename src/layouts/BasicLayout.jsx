@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Loadable from 'react-loadable';
-import { Layout, Icon } from 'antd';
+import { Layout, Icon, Button } from 'antd';
 import { Route } from 'react-router-dom';
 import Load from '../components/Load';
 import SiderBar from '../components/SiderBar';
 import { getMenuData } from '../constants/menu';
+import { AddStatementContainer } from '../components/Modal';
 
 const { Header, Sider, Content, Footer } = Layout;
 
@@ -74,6 +75,7 @@ class BasicLayout extends Component {
     super(props);
     this.state = {
       collapsed: false, // 侧边栏状态
+      setamentVisible: false, // 添加面板modal状态
     };
   }
 
@@ -117,9 +119,8 @@ class BasicLayout extends Component {
           // 获取地址最后一位
           let path = item.path.split('/').pop();
           // 由于url地址不建议驼峰命名，使用的为下划线命名词组，所有字符串驼峰化
-          path = path.replace(
-            /[-_\s]+(.)?/g,
-            (match, c) => (c ? c.toUpperCase() : ''),
+          path = path.replace(/[-_\s]+(.)?/g, (match, c) =>
+            c ? c.toUpperCase() : '',
           );
           cashArr = [
             ...cashArr,
@@ -180,6 +181,24 @@ class BasicLayout extends Component {
                 type={collapsed ? 'menu-unfold' : 'menu-fold'}
                 onClick={this.toggle}
                 style={{ fontSize: '1.5em' }}
+              />
+              <Button
+                type="primary"
+                onClick={() => {
+                  this.setState({
+                    setamentVisible: true,
+                  });
+                }}
+              >
+                添加图表面板
+              </Button>
+              <AddStatementContainer
+                visible={this.state.setamentVisible}
+                toggleModal={() => {
+                  this.setState({
+                    setamentVisible: !this.state.setamentVisible,
+                  });
+                }}
               />
             </Header>
             <Content

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
-import { axios, cancel } from '../../services/config';
+import { axios, cancel } from '../../services';
 
 class AxiosTest extends Component {
   constructor(props) {

@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import { Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
+import { axios } from '../../services';
+import { api } from '../../constants/api';
 
 const { SubMenu } = Menu;
 
 class SiderBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      dashboardList: [],
+    };
+  }
+
+  componentDidMount() {
+    axios.get(api.dashboardManage).then(res => {
+      this.setState({
+        dashboardList: res.data.dashboardList,
+      });
+    });
   }
 
   /**
@@ -56,6 +68,15 @@ class SiderBar extends Component {
     return (
       <Menu mode="inline" theme="dark">
         {this.formatterMenu(menuData)}
+        <SubMenu title="图表面板">
+          {this.state.dashboardList.map(item => (
+            <Menu.Item key={item.dashboardId}>
+              <Link to={`/mixin/mix1?id=${item.dashboardId}`}>
+                {item.config.name}
+              </Link>
+            </Menu.Item>
+          ))}
+        </SubMenu>
       </Menu>
     );
   }

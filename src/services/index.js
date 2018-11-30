@@ -53,7 +53,7 @@ axios.interceptors.response.use(
   response => {
     const { config } = response;
     removePending(config);
-    return response;
+    return response.data;
   },
   error => {
     // 是否有'/'，确定是否被取消请求

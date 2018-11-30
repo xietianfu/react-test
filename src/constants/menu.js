@@ -59,7 +59,7 @@ const menuData = [
     ],
   },
   {
-    name: '混合组件',
+    name: '数据可视化',
     path: 'mixin',
     authority: '02',
     children: [
@@ -67,6 +67,11 @@ const menuData = [
         title: '图表-拖动',
         name: 'mix1',
         path: 'mix1',
+      },
+      {
+        title: '数据表管理',
+        name: 'tableManage',
+        path: 'table-manage',
       },
     ],
   },

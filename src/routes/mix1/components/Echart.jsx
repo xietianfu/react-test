@@ -1,13 +1,22 @@
 import echarts from 'echarts';
 import React, { Component } from 'react';
+import { Input, Button } from 'antd';
 import '@components/Charts/thems/macarons';
 import '@components/Charts/thems/wonderland';
-import axios from 'axios';
+import { axios } from '../../../services';
 
+/**
+ * 根据图表数据和图表类型构建出serise的数据结构
+ * @param {mix} type 图表的类型
+ * @param {Array} source 图表数据
+ * @description 当type为字符串时，整个图表都是一种类型
+ * @description 当type为数组时，依照数组类型构建出混合图表
+ * @description 当type为对象时，依照对象参数构建出多个图表或者自定义相关的参数
+ */
 function buildDatasetSeries(type, source) {
   // 判断type传入的类型
   if (typeof type === 'string') {
-    let series = source[0].map(() => ({ type }));
+    const series = source[0].map(() => ({ type }));
     series.pop();
     return series;
   }
@@ -30,26 +39,36 @@ class Echart extends Component {
     super(props);
     this.random = Math.random() * 100000;
     this.random = this.random.toFixed(0).toString();
-    this.state = {};
+    this.state = {
+      filterList: [],
+      args: [],
+      sql: '',
+    };
   }
 
   componentDidMount() {
-    const { height = '400px', width = '400px', id } = this.props;
+    const { id } = this.props;
+    // 获取组件的大小，这是图表的宽高
+    // const fatherDom = document.querySelector(`#${id}`);
+    // const width = fatherDom.offsetWidth;
+    // const height = fatherDom.offsetHeight;
+
     axios
-      .get('/api/chart/detail', {
+      .get('/chart/detail', {
         params: {
           chartId: id,
         },
       })
       .then(res => {
-        console.log('chartDetail', res.data.data);
-        const { config, sql } = res.data.data;
-        this.setState(
-          {
-            config,
-          },
-          () => console.log('config', config),
-        );
+        const { config, sql } = res.data;
+        const filterRegex = /({(\w+)})/g;
+        const filterList = sql.match(filterRegex);
+        this.setState({
+          sql,
+          config,
+          filterList,
+          args: filterList.map(item => ''),
+        });
 
         // 基于准备好的dom，初始化echarts实例
         this.myChart = echarts.init(
@@ -62,16 +81,17 @@ class Echart extends Component {
             width: '800px',
           },
         );
+
         return sql;
       })
       .then(sql => {
         axios
-          .post('/api/sql_result', {
+          .post('/sql_result', {
             sql,
           })
           .then(res => {
             this.setState({
-              source: res.data.data,
+              source: res.data,
             });
             this.setOption();
           });
@@ -81,17 +101,15 @@ class Echart extends Component {
   getSnapshotBeforeUpdate(prevProps, prevState) {
     const { height = '600px', width = '100px', source } = this.state;
     const { editKey, removeEditKey, id } = this.props;
-    console.log('editKey', editKey);
     if (editKey) {
-      console.log('should updata');
       axios
-        .get('/api/chart/detail', {
+        .get('/chart/detail', {
           params: {
             chartId: id,
           },
         })
         .then(res => {
-          const { config, sql } = res.data.data;
+          const { config, sql } = res.data;
           this.setState({
             config,
           });
@@ -100,12 +118,12 @@ class Echart extends Component {
         })
         .then(sql => {
           axios
-            .post('/api/sql_result', {
+            .post('/sql_result', {
               sql,
             })
             .then(res => {
               this.setState({
-                source: res.data.data,
+                source: res.data,
               });
             })
             .then(() => {
@@ -132,10 +150,9 @@ class Echart extends Component {
   };
 
   setOption = () => {
-    const { config, source } = this.state;
-    console.log('config', config);
+    const { config, source, args } = this.state;
     const commonConfig = {
-      title: { text: config.title },
+      title: { text: config.title.text },
       dataset: {
         source,
       },
@@ -159,8 +176,55 @@ class Echart extends Component {
     }
   };
 
+  changeFilter = (index, val) => {
+    console.log(index, val);
+    const { args } = this.state;
+    args[index] = val;
+    this.setState({
+      args,
+    });
+  };
+
+  filterSumbit = () => {
+    const { sql, args } = this.state;
+    axios
+      .post('/sql_result', {
+        sql,
+        args,
+      })
+      .then(res => {
+        this.setState({
+          source: res.data,
+        });
+      })
+      .then(() => {
+        this.setOption();
+      });
+  };
+
   render() {
-    return <div id={this.random} style={{ maxWidth: '100%' }} />;
+    const { filterList, args } = this.state;
+    return (
+      <div>
+        {filterList.map((item, index) => {
+          return (
+            <div key={item}>
+              <p>{item}</p>
+              <Input
+                value={args[index]}
+                onChange={e => this.changeFilter(index, e.target.value)}
+              />
+            </div>
+          );
+        })}
+        {filterList.length > 0 && (
+          <Button type="primary" block onClick={() => this.filterSumbit()}>
+            修改条件
+          </Button>
+        )}
+        <div id={this.random} style={{ maxWidth: '100%' }} />
+      </div>
+    );
   }
 }
 
