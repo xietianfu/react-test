@@ -38,8 +38,8 @@ const RouteMap = () => (
         <Router history={history}>
           {/* <Router> */}
           <Switch>
-            <Route path="/" component={AsyncHome} />
             <Route path="/login" component={AsyncLogin} />
+            <Route path="/" component={AsyncHome} />
           </Switch>
         </Router>
       </PersistGate>

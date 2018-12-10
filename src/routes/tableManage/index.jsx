@@ -10,6 +10,7 @@ class TableManage extends Component {
     super(props);
     this.state = {
       visible: false,
+      alloVisible: false,
       templateList: [],
       editData: {},
     };
@@ -32,6 +33,12 @@ class TableManage extends Component {
   toggleVisible = () => {
     this.setState({
       visible: !this.state.visible,
+    });
+  };
+
+  toggleAlloVisible = () => {
+    this.setState({
+      alloVisible: !this.state.alloVisible,
     });
   };
 

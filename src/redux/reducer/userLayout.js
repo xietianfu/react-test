@@ -1,11 +1,12 @@
+import { actionType } from '../action/actionType';
 export default (state = {}, action) => {
-  const { counterCaption } = action;
+  const { data, type } = action;
 
-  switch (action.type) {
-    case 'increment':
-      return { ...state, count: counterCaption };
-    case 'decrement':
-      return { ...state, [counterCaption]: state[counterCaption] - 1 };
+  switch (type) {
+    case actionType.userLayout.user.add:
+      return { ...state, user: data };
+    case actionType.userLayout.user.remove:
+      return { ...state, user: {} };
     default:
       return state;
   }

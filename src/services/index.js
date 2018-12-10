@@ -41,10 +41,10 @@ axios.defaults.baseURL = '/api';
 axios.interceptors.request.use(config => {
   // 手动取消请求
   // eslint-disable-next-line
-  removePending(config);
-  config.cancelToken = new CancelToken(c => {
-    pending.push({ u: `${config.url}&&${config.method}`, f: c });
-  });
+  // removePending(config);
+  // config.cancelToken = new CancelToken(c => {
+  //   pending.push({ u: `${config.url}&&${config.method}`, f: c });
+  // });
   return config;
 });
 
@@ -52,7 +52,7 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(
   response => {
     const { config } = response;
-    removePending(config);
+    // removePending(config);
     return response.data;
   },
   error => {
@@ -60,7 +60,7 @@ axios.interceptors.response.use(
     if (error.message[0] !== '/') {
       const { data, status, config } = error.response;
       const errortext = codeMessage[status] || status;
-      removePending(config);
+      // removePending(config);
       notification.error({
         message: errortext,
         description: `请求错误 ${status}: ${data}`,

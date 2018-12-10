@@ -6,6 +6,10 @@ import Load from '../components/Load';
 import SiderBar from '../components/SiderBar';
 import { getMenuData } from '../constants/menu';
 import { AddStatementContainer } from '../components/Modal';
+import { connect } from 'react-redux';
+import User from '../components/User';
+import { axios } from '../services';
+import { api } from '../constants/api';
 
 const { Header, Sider, Content, Footer } = Layout;
 
@@ -16,7 +20,10 @@ const { Header, Sider, Content, Footer } = Layout;
  * @returns {Array} 过滤后的菜单
  * @author xietf
  */
-function filterMenuData(menuData, authorityArr = ['01', '02']) {
+function filterMenuData(
+  menuData,
+  authorityArr = ['01', '02', '03', '04', '05'],
+) {
   /**
    * 生成带有undifind的菜单数组
    * @param {Array} _menuData 菜单数组
@@ -70,25 +77,34 @@ function filterMenuData(menuData, authorityArr = ['01', '02']) {
   return _removeUndifind(result);
 }
 
+@connect(state => state.persistedReducer.userLayout.user)
 class BasicLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
       collapsed: false, // 侧边栏状态
       setamentVisible: false, // 添加面板modal状态
+      authorityArr: [],
     };
   }
 
   componentDidMount() {
-    const loginStauts = true;
-    const { history } = this.props;
-    if (!loginStauts) {
-      history.push('/login');
-    }
-  }
-
-  componentWillUpdate(nextProps) {
-    console.log(nextProps);
+    // const loginStauts = true;
+    // const { history } = this.props;
+    // if (!loginStauts) {
+    //   history.push('/login');
+    // }
+    axios
+      .get(api.user, {
+        params: {
+          userId: this.props.id,
+        },
+      })
+      .then(res => {
+        this.setState({
+          authorityArr: res.data.sidebars,
+        });
+      });
   }
 
   /**
@@ -102,6 +118,7 @@ class BasicLayout extends Component {
   };
 
   /**
+   * 构建侧边栏路由菜单
    * @param {Array} menuData 菜单数据
    * @returns {Array} 路由数组
    * @author xietf
@@ -138,11 +155,11 @@ class BasicLayout extends Component {
       });
       return cashArr;
     }
-    return Error('出错了');
+    return console.error('出错了');
   };
 
   render() {
-    const { collapsed } = this.state;
+    const { collapsed, authorityArr } = this.state;
     return (
       <div>
         <Layout>
@@ -165,11 +182,13 @@ class BasicLayout extends Component {
             >
               logo
             </h2>
-            <SiderBar menuData={filterMenuData(getMenuData())} />
+            <SiderBar menuData={filterMenuData(getMenuData(), authorityArr)} />
           </Sider>
           <Layout>
             <Header
               style={{
+                display: 'flex',
+                alignItems: 'center',
                 background: '#fff',
                 padding: '0 1em',
                 boxShadow: '2px 0 6px rgba(0, 21, 41, 0.35)',
@@ -183,6 +202,9 @@ class BasicLayout extends Component {
                 style={{ fontSize: '1.5em' }}
               />
               <Button
+                style={{
+                  margin: '0 1em',
+                }}
                 type="primary"
                 onClick={() => {
                   this.setState({
@@ -192,6 +214,8 @@ class BasicLayout extends Component {
               >
                 添加图表面板
               </Button>
+              <User />
+
               <AddStatementContainer
                 visible={this.state.setamentVisible}
                 toggleModal={() => {

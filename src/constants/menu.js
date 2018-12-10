@@ -21,57 +21,77 @@ const menuData = [
       {
         name: 'immutable',
         path: 'immutable',
+        authority: '03',
       },
       {
         name: 'react-loadable',
         path: 'react-loadable',
+        authority: '04',
       },
     ],
   },
-  {
-    name: '基础练习',
-    path: 'basic',
-    authority: '01',
-    children: [
-      {
-        name: '修饰器',
-        path: 'decorator',
-      },
-    ],
-  },
-  {
-    name: '自定义组件',
-    path: 'custom',
-    authority: '02',
-    children: [
-      {
-        name: 'echart',
-        path: 'echart',
-      },
-      {
-        name: 'gridLayout',
-        path: 'grid-layout',
-      },
-      {
-        name: 'intro',
-        path: 'intro',
-      },
-    ],
-  },
+  // {
+  //   name: '基础练习',
+  //   path: 'basic',
+  //   authority: '02',
+  //   children: [
+  //     {
+  //       name: '修饰器',
+  //       path: 'decorator',
+  //       authority: '01',
+  //     },
+  //   ],
+  // },
+  // {
+  //   name: '自定义组件',
+  //   path: 'custom',
+  //   authority: '03',
+  //   children: [
+  //     {
+  //       name: 'echart',
+  //       path: 'echart',
+  //       authority: '01',
+  //     },
+  //     {
+  //       name: 'gridLayout',
+  //       path: 'grid-layout',
+  //       authority: '02',
+  //     },
+  //     {
+  //       name: 'intro',
+  //       path: 'intro',
+  //       authority: '03',
+  //     },
+  //   ],
+  // },
   {
     name: '数据可视化',
     path: 'mixin',
-    authority: '02',
+    authority: '04',
     children: [
       {
         title: '图表-拖动',
         name: 'mix1',
         path: 'mix1',
+        authority: '01',
       },
       {
         title: '数据表管理',
         name: 'tableManage',
         path: 'table-manage',
+        authority: '02',
+      },
+    ],
+  },
+  {
+    name: '权限管理',
+    path: 'auth',
+    authority: '05',
+    children: [
+      {
+        title: '权限配置',
+        name: 'authority',
+        path: 'authority',
       },
     ],
   },
