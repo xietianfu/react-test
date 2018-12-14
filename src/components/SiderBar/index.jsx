@@ -1,8 +1,6 @@
+import { Icon, Menu } from 'antd';
 import React, { Component } from 'react';
-import { Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
-import { axios } from '../../services';
-import { api } from '../../constants/api';
 
 const { SubMenu } = Menu;
 
@@ -15,11 +13,12 @@ class SiderBar extends Component {
   }
 
   componentDidMount() {
-    axios.get(api.dashboardManage).then(res => {
-      this.setState({
-        dashboardList: res.data.dashboardList,
-      });
-    });
+    // 请求动态面板
+    // axios.get(api.dashboardManage).then(res => {
+    //   this.setState({
+    //     dashboardList: res.data.dashboardList,
+    //   });
+    // });
   }
 
   /**
@@ -68,7 +67,9 @@ class SiderBar extends Component {
     return (
       <Menu mode="inline" theme="dark">
         {this.formatterMenu(menuData)}
-        <SubMenu title="图表面板">
+
+        {/* 后端动态面板 */}
+        {/* <SubMenu title="图表面板">
           {this.state.dashboardList.map(item => (
             <Menu.Item key={item.dashboardId}>
               <Link to={`/mixin/mix1?id=${item.dashboardId}`}>
@@ -76,7 +77,7 @@ class SiderBar extends Component {
               </Link>
             </Menu.Item>
           ))}
-        </SubMenu>
+        </SubMenu> */}
       </Menu>
     );
   }

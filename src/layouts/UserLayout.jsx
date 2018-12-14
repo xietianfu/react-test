@@ -1,10 +1,9 @@
-import { Button, Card, Input, Divider, message } from 'antd';
+import { Button, Card, Divider, Input } from 'antd';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { decrement, increment } from '../redux/action/index';
-import { axios } from '../services/index';
 import { api } from '../constants/api';
 import { addUser } from '../redux/action/userLayout';
+import { axios } from '../services/index';
 
 @connect(state => state.userLayout)
 class UserLayout extends Component {
@@ -27,19 +26,19 @@ class UserLayout extends Component {
   onSumbit = () => {
     const { user, pwd } = this.state;
     const { history, dispatch } = this.props;
-    axios
-      .post(api.login, {
-        username: user,
-        password: pwd,
-      })
-      .then(res => {
-        if (res.code === 10000) {
-          dispatch(
-            addUser({ username: user, password: pwd, id: res.data.userId }),
-          );
-          history.push('/');
-        }
-      });
+    // axios
+    //   .post(api.login, {
+    //     username: user,
+    //     password: pwd,
+    //   })
+    //   .then(res => {
+    //     if (res.code === 10000) {
+    //       dispatch(
+    //         addUser({ username: user, password: pwd, id: res.data.userId }),
+    //       );
+    //       history.push('/');
+    //     }
+    //   });
   };
 
   render() {

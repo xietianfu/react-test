@@ -1,15 +1,13 @@
+import { Layout } from 'antd';
 import React, { Component } from 'react';
 import Loadable from 'react-loadable';
-import { Layout, Icon, Button } from 'antd';
+import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import Load from '../components/Load';
 import SiderBar from '../components/SiderBar';
-import { getMenuData } from '../constants/menu';
-import { AddStatementContainer } from '../components/Modal';
-import { connect } from 'react-redux';
-import User from '../components/User';
-import { axios } from '../services';
 import { api } from '../constants/api';
+import { getMenuData } from '../constants/menu';
+import { axios } from '../services';
 
 const { Header, Sider, Content, Footer } = Layout;
 
@@ -94,17 +92,17 @@ class BasicLayout extends Component {
     // if (!loginStauts) {
     //   history.push('/login');
     // }
-    axios
-      .get(api.user, {
-        params: {
-          userId: this.props.id,
-        },
-      })
-      .then(res => {
-        this.setState({
-          authorityArr: res.data.sidebars,
-        });
-      });
+    // axios
+    //   .get(api.user, {
+    //     params: {
+    //       userId: this.props.id,
+    //     },
+    //   })
+    //   .then(res => {
+    //     this.setState({
+    //       authorityArr: res.data.sidebars,
+    //     });
+    //   });
   }
 
   /**
@@ -146,7 +144,7 @@ class BasicLayout extends Component {
               key={item.name}
               path={item.path}
               component={Loadable({
-                loader: () => import(`../routes/${path}`),
+                loader: () => import(`../container/${item.name}`),
                 loading: Load,
               })}
             />,
@@ -182,7 +180,7 @@ class BasicLayout extends Component {
             >
               logo
             </h2>
-            <SiderBar menuData={filterMenuData(getMenuData(), authorityArr)} />
+            <SiderBar menuData={filterMenuData(getMenuData())} />
           </Sider>
           <Layout>
             <Header
@@ -194,37 +192,7 @@ class BasicLayout extends Component {
                 boxShadow: '2px 0 6px rgba(0, 21, 41, 0.35)',
                 zIndex: '1000',
               }}
-            >
-              <Icon
-                className="trigger"
-                type={collapsed ? 'menu-unfold' : 'menu-fold'}
-                onClick={this.toggle}
-                style={{ fontSize: '1.5em' }}
-              />
-              <Button
-                style={{
-                  margin: '0 1em',
-                }}
-                type="primary"
-                onClick={() => {
-                  this.setState({
-                    setamentVisible: true,
-                  });
-                }}
-              >
-                添加图表面板
-              </Button>
-              <User />
-
-              <AddStatementContainer
-                visible={this.state.setamentVisible}
-                toggleModal={() => {
-                  this.setState({
-                    setamentVisible: !this.state.setamentVisible,
-                  });
-                }}
-              />
-            </Header>
+            />
             <Content
               style={{
                 margin: '24px 16px',

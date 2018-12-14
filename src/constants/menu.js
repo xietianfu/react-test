@@ -1,97 +1,21 @@
 import { isUrl } from '../utils/utils';
 
+// 侧边栏菜单
 const menuData = [
+  // demo
   {
-    name: '基础包',
-    icon: 'code',
-    path: 'package',
-    authority: '01',
+    name: '基础包', // 侧边栏名称
+    icon: 'code', // 侧边栏图标
+    path: 'package', // 路由地址
+    authority: '01', // 权限ID
     children: [
+      // 子节点
       {
-        name: 'redux',
-        path: 'redux',
+        title: '测试', // 子级菜单展示名称，如果不写名称为name字段
+        name: 'Demo', // container目录的名称
+        path: 'demo', // 路由地址
         icon: 'dashboard',
         authority: '01',
-      },
-      {
-        name: 'axios',
-        path: 'axios',
-        authority: '02',
-      },
-      {
-        name: 'immutable',
-        path: 'immutable',
-        authority: '03',
-      },
-      {
-        name: 'react-loadable',
-        path: 'react-loadable',
-        authority: '04',
-      },
-    ],
-  },
-  // {
-  //   name: '基础练习',
-  //   path: 'basic',
-  //   authority: '02',
-  //   children: [
-  //     {
-  //       name: '修饰器',
-  //       path: 'decorator',
-  //       authority: '01',
-  //     },
-  //   ],
-  // },
-  // {
-  //   name: '自定义组件',
-  //   path: 'custom',
-  //   authority: '03',
-  //   children: [
-  //     {
-  //       name: 'echart',
-  //       path: 'echart',
-  //       authority: '01',
-  //     },
-  //     {
-  //       name: 'gridLayout',
-  //       path: 'grid-layout',
-  //       authority: '02',
-  //     },
-  //     {
-  //       name: 'intro',
-  //       path: 'intro',
-  //       authority: '03',
-  //     },
-  //   ],
-  // },
-  {
-    name: '数据可视化',
-    path: 'mixin',
-    authority: '04',
-    children: [
-      {
-        title: '图表-拖动',
-        name: 'mix1',
-        path: 'mix1',
-        authority: '01',
-      },
-      {
-        title: '数据表管理',
-        name: 'tableManage',
-        path: 'table-manage',
-        authority: '02',
-      },
-    ],
-  },
-  {
-    name: '权限管理',
-    path: 'auth',
-    authority: '05',
-    children: [
-      {
-        title: '权限配置',
-        name: 'authority',
-        path: 'authority',
       },
     ],
   },
