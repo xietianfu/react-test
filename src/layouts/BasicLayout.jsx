@@ -159,56 +159,56 @@ class BasicLayout extends Component {
   render() {
     const { collapsed, authorityArr } = this.state;
     return (
-      <div>
-        <Layout>
-          <Sider
-            trigger={null}
-            collapsible
-            collapsed={collapsed}
+      <Layout style={{ height: '100%' }}>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          style={{
+            minHeight: '100vh',
+            overflow: 'auto',
+            padding: '1em 0',
+            boxShadow: '2px 0 6px rgba(0, 21, 41, 0.35)',
+            // display: 'none',
+          }}
+        >
+          <h2
             style={{
-              minHeight: '100vh',
-              padding: '1em 0',
-              boxShadow: '2px 0 6px rgba(0, 21, 41, 0.35)',
+              textAlign: 'center',
+              color: 'rgba(255, 255, 255, 0.65)',
+              lineHeight: '1.5',
             }}
           >
-            <h2
-              style={{
-                textAlign: 'center',
-                color: 'rgba(255, 255, 255, 0.65)',
-                lineHeight: '1.5',
-              }}
-            >
-              logo
-            </h2>
-            <SiderBar menuData={filterMenuData(getMenuData())} />
-          </Sider>
-          <Layout>
-            <Header
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                background: '#fff',
-                padding: '0 1em',
-                boxShadow: '2px 0 6px rgba(0, 21, 41, 0.35)',
-                zIndex: '1000',
-              }}
-            />
-            <Content
-              style={{
-                margin: '24px 16px',
-                padding: 24,
-                background: '#fff',
-                minHeight: 280,
-              }}
-            >
-              {this.buildRoute(getMenuData())}
-            </Content>
-            <Footer style={{ textAlign: 'center', padding: '1em' }}>
-              卧龙大数据
-            </Footer>
-          </Layout>
+            logo
+          </h2>
+          <SiderBar menuData={filterMenuData(getMenuData())} />
+        </Sider>
+        <Layout>
+          <Header
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              background: '#fff',
+              padding: '0 1em',
+              boxShadow: '2px 0 6px rgba(0, 21, 41, 0.35)',
+              zIndex: '1000',
+            }}
+          />
+          <Content
+            style={{
+              margin: '24px 16px',
+              padding: 24,
+              background: '#fff',
+              minHeight: 280,
+            }}
+          >
+            {this.buildRoute(getMenuData())}
+          </Content>
+          <Footer style={{ textAlign: 'center', padding: '1em' }}>
+            卧龙大数据
+          </Footer>
         </Layout>
-      </div>
+      </Layout>
     );
   }
 }
