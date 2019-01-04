@@ -6,7 +6,14 @@ const Demo = () => {
   return (
     <div>
       <h1 className="title">hello world</h1>
-      <h1 className={style.title}>hello world!</h1>
+      <h1
+        className={style.title}
+        onClick={() => {
+          console.log(i);
+        }}
+      >
+        hello world!
+      </h1>
     </div>
   );
 };
