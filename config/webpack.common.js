@@ -85,23 +85,6 @@ module.exports = {
           },
         ],
       },
-      // {
-      //   test: /\.less$/,
-      //   exclude: ['/node_modules/'],
-      //   use: [
-      //     require.resolve('style-loader'),
-      //     {
-      //       loader: require.resolve('css-loader'),
-      //       options: {
-      //         modules: true,
-      //         localIndexName: '[name]__[local]___[hash:base64:5]',
-      //       },
-      //     },
-      //     {
-      //       loader: require.resolve('less-loader'), // compiles Less to CSS
-      //     },
-      //   ],
-      // },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
