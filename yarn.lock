@@ -303,6 +303,10 @@ ajv@^6.1.0:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.1"
 
+animejs@^3.0.0:
+  version "3.0.0"
+  resolved "http://registry.npm.taobao.org/animejs/download/animejs-3.0.0.tgz#6b0fb87fbd0b13128b35fe8e790b1671ae7b825d"
+
 ansi-escapes@^3.0.0:
   version "3.1.0"
   resolved "http://registry.npm.taobao.org/ansi-escapes/download/ansi-escapes-3.1.0.tgz#f73207bb81207d75fd6c83f125af26eea378ca30"
