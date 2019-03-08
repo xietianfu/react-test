@@ -71,12 +71,14 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: ['/node_modules/'],
+        include: path.join(rootPath, 'src/container'),
         use: [
           require.resolve('style-loader'),
           {
             loader: require.resolve('css-loader'),
             options: {
               modules: true,
+              include: path.join(rootPath, 'src/container'),
               localIndexName: '[name]__[local]___[hash:base64:5]',
             },
           },
@@ -84,6 +86,11 @@ module.exports = {
             loader: require.resolve('less-loader'), // compiles Less to CSS
           },
         ],
+      },
+      {
+        test: /\.less$/,
+        include: path.join(rootPath, 'src/assets'),
+        use: ['style-loader', 'css-loader', 'less-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
