@@ -1,5 +1,6 @@
+/** @format */
+
 import axios from 'axios';
-import { notification } from 'antd';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -19,6 +20,31 @@ const codeMessage = {
   504: '网关超时。',
 };
 
+/**
+ * 过滤错误码
+ * @param {function} reject promis的错误回调函数
+ */
+function filterCode(res) {
+  // response 返回的状态码和数据
+  const { code, data = {} } = res;
+  switch (code) {
+    // case 20012: // 没有注册的
+    //   notification.error({
+    //     message: ERROR_MSG.authority.name,
+    //     description: ERROR_MSG.authority.msg.register,
+    //   });
+    //   return { code, data };
+    // case 10003:
+    //   window.location.href = '/login';
+    //   break;
+    // case ERROR_CODE.QUERY_FULL:
+    //   store.dispatch(openSearchFullModal());
+    //   break;
+    default:
+      return { res };
+  }
+}
+
 // 声明一个数组用于存储每个ajax请求的取消函数和ajax标识
 let pending = [];
 const { CancelToken } = axios;
@@ -35,16 +61,18 @@ const removePending = config => {
 };
 
 // 默认配置
-axios.defaults.baseURL = '/api';
+// axios.defaults.baseURL = '/api';
 
 // 请求处理
 axios.interceptors.request.use(config => {
   // 手动取消请求
   // eslint-disable-next-line
-  // removePending(config);
-  // config.cancelToken = new CancelToken(c => {
-  //   pending.push({ u: `${config.url}&&${config.method}`, f: c });
-  // });
+  removePending(config);
+  config.cancelToken = new CancelToken(c => {
+    pending.push({ u: `${config.url}&&${config.method}`, f: c });
+  });
+  // 请求时，统一带上用户id
+  config.params = { ...config.params, userId: '000008' };
   return config;
 });
 
@@ -52,27 +80,32 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(
   response => {
     const { config } = response;
-    // removePending(config);
-    return response.data;
+    removePending(config);
+    // 只有code码为10000时返回数据，其他都抛出错误
+    if (response.data.code === 10000) {
+      return response.data.data;
+    }
+    filterCode(response.data);
+    return Promise.reject(response.data);
   },
   error => {
     // 是否有'/'，确定是否被取消请求
     if (error.message[0] !== '/') {
       const { data, status, config } = error.response;
       const errortext = codeMessage[status] || status;
-      // removePending(config);
-      notification.error({
-        message: errortext,
-        description: `请求错误 ${status}: ${data}`,
-      });
+      removePending(config);
+      // notification.error({
+      //   message: errortext,
+      //   description: `请求错误 ${status}: ${data}`,
+      // });
       throw error;
     } else {
-      notification.warning({
-        message: '请求已被取消',
-        description: `该"/api${
-          error.message
-        }"请求，可能由于再次被发送而被取消。`,
-      });
+      // notification.warning({
+      //   message: '请求已被取消',
+      //   description: `该"/api${
+      //     error.message
+      //   }"请求，可能由于再次被发送而被取消。`,
+      // });
     }
   },
 );

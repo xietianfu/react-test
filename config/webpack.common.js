@@ -52,7 +52,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     alias: {
-      '@components': path.join(srcPath, 'components'),
+      '@': srcPath,
     },
   },
 
@@ -78,8 +78,7 @@ module.exports = {
             loader: require.resolve('css-loader'),
             options: {
               modules: true,
-              include: path.join(rootPath, 'src/container'),
-              localIndexName: '[name]__[local]___[hash:base64:5]',
+              localIdentName: '[name]__[local]___[hash:base64:5]',
             },
           },
           {

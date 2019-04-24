@@ -1,9 +1,6 @@
 import { Button, Card, Divider, Input } from 'antd';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { api } from '../constants/api';
-import { addUser } from '../redux/action/userLayout';
-import { axios } from '../services/index';
 
 @connect(state => state.userLayout)
 class UserLayout extends Component {

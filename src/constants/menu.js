@@ -24,6 +24,13 @@ const menuData = [
         icon: 'dashboard',
         authority: '01',
       },
+      {
+        title: 'hooks',
+        name: 'Hooks',
+        path: 'hooks',
+        icon: 'dashboard',
+        authority: '01',
+      },
     ],
   },
 ];

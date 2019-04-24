@@ -5,9 +5,7 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import Load from '../components/Load';
 import SiderBar from '../components/SiderBar';
-import { api } from '../constants/api';
 import { getMenuData } from '../constants/menu';
-import { axios } from '../services';
 
 const { Header, Sider, Content, Footer } = Layout;
 

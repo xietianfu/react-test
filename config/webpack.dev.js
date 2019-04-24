@@ -18,14 +18,14 @@ module.exports = merge(common, {
     https: protocol === 'https',
     host: '0.0.0.0',
     port: 8888,
-    open: true,
+    open: false,
     overlay: true,
     useLocalIp: true,
     historyApiFallback: true,
     proxy: {
-      '/api/*': {
-        // target: 'http://localhost:36742',
-        target: 'http://10.0.2.127:8888',
+      '/api/**': {
+        target: 'http://m.gonghang.test.cdecube.com',
+        // target: 'http://10.0.2.127:8888',
         secure: false, // 接受 运行在 https 上的服务
         changeOrigin: true,
       },
