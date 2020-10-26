@@ -1,63 +1,43 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useState, useEffect ,useCallback,useMemo,memo} from 'react'
 
-import { apiFetch } from '@/server/api';
+const ChildrenCmp=memo(({...props})=>{
+  console.info('child has render');
 
-// eslint-disable-next-line
-export default function Hooks(props) {
-  const [age, setAge] = useState(18);
+  useEffect(()=>{
+    console.info('child effect has runned')
+  })
+  return <div>
+    <h1>children{props.count} </h1>
+  </div>
+})
 
-  const [name, setName] = useState('xietf');
+export default ()=>{
 
-  const [total, setTotal] = useState();
-  /* 初始化请求 */
-  useEffect(() => {
-    apiFetch.getProducts().then(res => {
-      console.log(res);
-      setTotal(res.total);
-    });
-    console.log(name);
-  }, [age]);
-  /* 设置定时器 */
-  useEffect(() => {
-    console.log(age);
-    console.log('totla', total);
-    const time1 = setTimeout(() => {
-      console.log('time is end');
-    }, 5000);
-  });
-  useLayoutEffect(() => {
-    console.log('xidsdkljkl');
-  });
+  const [count,setCount]=useState(0);
+  const num=1
+  console.info('parent has render')
 
-  const inputE1 = useRef();
+  const handleChildren = () => {
+    console.log('clicked ChildrenComponent');
+  };
 
-  useEffect(() => {
-    console.log(inputE1);
-  });
+  function sayHello(){
+    console.log('hello')
+  }
 
-  return (
-    <div>
-      <h1>hello world!</h1>
-      <h1>{age}</h1>
-      <div>
-        <button onClick={() => setAge(age + 1)}>+1</button>
-        <button onClick={() => setAge(age - 1)}>-1</button>
-      </div>
-      <h1>{name}</h1>
-      <input type="text" onChange={e => setName(e.target.value)} />
-      <h1>{total}</h1>
-      <input type="text" onChange={e => setTotal(e.target.value)} />
-      <div>
-        <input ref={inputE1} type="text" />
-        <button
-          onClick={() => {
-            inputE1.current.focus();
-            console.log(inputE1.current.value);
-          }}
-        >
-          add hello
-        </button>
-      </div>
-    </div>
-  );
+  const handleParent = () => {
+    console.log('clicked ParentComponent');
+    setCount(preCount => preCount + 1);
+  };
+
+  const callBackCount=useCallback(()=>count>10?count:1,[count]);
+
+  const memoCount=useMemo(()=> callBackCount(),[count]);
+
+  return <div>
+    <h1 onClick={handleParent} >当前计数：{count}</h1>
+    <ChildrenCmp change={sayHello} ></ChildrenCmp>
+    {/* <ChildrenCmp count={memoCount} ></ChildrenCmp> */}
+  </div>
 }
+
