@@ -51,7 +51,7 @@
   "dependencies": {
     "animejs": "^3.0.0",
     "antd": "^3.10.8",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "echarts": "^4.1.0",
     "express": "^4.16.4",
